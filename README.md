@@ -1,5 +1,7 @@
 # KT-ai-project
 * 10조 프로젝트 git 페이지입니다.
+* ![KakaoTalk_20211228_220545203](https://user-images.githubusercontent.com/47729233/147635947-21490f7c-d8d7-4411-93df-be7735cf8b63.png)
+
 
 ## 과제개요서
 
