@@ -1,0 +1,43 @@
+from google.colab import files
+uploaded = files.upload()
+
+import pandas as pd 
+
+test=pd.read_excel('climate.xlsx')
+print(test)
+test_list = test.values.tolist()
+test_col = list([col for col in test])
+
+for i in range(0,366):
+  if(test_list[i][0]<7):
+    test_list[i][5] = 1
+  elif(7<=test_list[i][0]<9):
+    test_list[i][5] = 2
+  elif(9<=test_list[i][0]<12):
+    test_list[i][5] = 3
+  elif(12<=test_list[i][0]<15):
+    test_list[i][5] = 4
+  elif(15<=test_list[i][0]<19):
+    test_list[i][5] = 5
+  elif(19<=test_list[i][0]<23):
+    test_list[i][5] = 6
+  elif(23<=test_list[i][0]<28):
+    test_list[i][5] = 7
+  else:
+    test_list[i][5] = 8
+  
+  if(test_list[i][3]>75):
+    if(test_list[i][5]<=7):
+      test_list[i][5]+=1
+    else: test_list[i][5]==8
+
+  if(test_list[i][4]>5):
+    if(test_list[i][3]>=2):
+      test_list[i][3]-=1
+    else: test_list[i][3]==1
+  
+  if(test_list[i][2]>=10):
+    test_list[i][5] =9
+
+test = pd.DataFrame(test_list, columns=test_col)
+test.to_csv('drive/My Drive/Colab Notebooks/climate_result.csv',index = False)
