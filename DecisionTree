@@ -1,0 +1,35 @@
+import pandas as pd
+import numpy as np
+import tensorflow as tf
+import matplotlib.pyplot as plt
+
+from google.colab import files
+uploaded = files.upload()
+
+train_data = pd.read_csv('climate_result.csv')
+print(train_data)
+X = train_data.iloc[:,[0,1,2,3,4]].values
+y = train_data.iloc[:,[5]].values
+
+from sklearn.model_selection import train_test_split
+
+train_x, val_x, train_y, val_y = train_test_split(X,y,test_size=0.2,random_state=20)
+
+#1. import
+from sklearn.tree import DecisionTreeClassifier
+
+#2. 선언
+dtc = DecisionTreeClassifier()
+
+#3. fit
+dtc.fit(train_x,train_y)
+
+#4. predict
+dtc_pred = dtc.predict(val_x)
+
+dtc.score(train_x, train_y), dtc.score(val_x, val_y)
+
+dtc.score(train_x, train_y), dtc.score(val_x, val_y)
+
+from sklearn.metrics import accuracy_score
+accuracy_score(val_y, dtc_pred)
