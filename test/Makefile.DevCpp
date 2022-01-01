@@ -1,0 +1,81 @@
+############################################
+# This is a project standard makefile..
+############################################
+
+SHELL	= CMD.EXE
+# C:\Programs\Dev-Cpp\bin\make.exe
+# set Path=$Path;C:\Programs\Dev-Cpp\MinGW64\bin
+# mingw32-make.exe -f Makefile.DevCpp
+
+############################################
+DEVCPP = C:\Programs\Dev-Cpp\MinGW64
+############################################
+
+CPP	= $(DEVCPP)/bin/g++.exe
+CC	= $(DEVCPP)/bin/gcc.exe
+RM	= $(DEVCPP)\bin\rm -f
+AR	= $(DEVCPP)\bin\ar r
+RANLIB	= $(DEVCPP)\bin\ranlib
+
+###########################################
+# IOTMAKERS_SDK_HOME
+###########################################
+IOTMAKERS_SDK_HOME = ..
+IOTMAKERS_SDK_LIBNAME = libiotmakers_win32.a
+
+IOTMAKERS_SDK_LIB_PATH = $(IOTMAKERS_SDK_HOME)/lib
+IOTMAKERS_SDK_INC_PATH = $(IOTMAKERS_SDK_HOME)/include
+IOTMAKERS_SDK_LIB = $(IOTMAKERS_SDK_LIB_PATH)/$(IOTMAKERS_SDK_LIBNAME)
+
+###########################################
+# SYSLIB
+###########################################
+# Linux
+#SYSLIB = -lpthread -lm
+
+# Win32
+SYSLIB = -L"$(DEVCPP)/x86_64-w64-mingw32/lib32" \
+	"$(DEVCPP)/x86_64-w64-mingw32/lib32/libws2_32.a" \
+
+
+###########################################
+# FLAGs
+###########################################
+INCLUDEALL = -I$(IOTMAKERS_SDK_INC_PATH)
+CFLAGS = -W -O0 -g -m32
+
+LIBALL = $(IOTMAKERS_SDK_LIB) $(SYSLIB)
+OFLAGS = -m32
+
+###########################################
+# SOURCE TREE
+###########################################
+C_OBJECT = \
+	main.o 
+
+###########################################
+# BUILD
+###########################################
+PRODUCT = tt
+all: $(PRODUCT)
+
+$(PRODUCT) : $(C_OBJECT) 
+	$(CC) -o $(PRODUCT) $(C_OBJECT) $(OFLAGS) $(LIBALL)
+
+###########################################
+# Compile
+###########################################
+.SUFFIXES : .o .asm .c .cxx .bas .sc .y .yxx .l .lxx  .pc
+
+.c.o : $(C_SOURCE)
+	$(CC) $(CFLAGS) $(INCLUDEALL) -c $*.c -o $*.o
+
+.cxx.o : $(C_SOURCE)
+	$(CC) $(CFLAGS) $(INCLUDEALL) -c $*.cxx -o $*.o
+
+###########################################
+# Util
+###########################################
+clean : $(C_SOURCE)
+	rm -rf $(C_OBJECT)
+

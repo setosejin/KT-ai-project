@@ -1,0 +1,73 @@
+2.2.3: 2016-06-17
+=================
+. fixed: sockaddr instead of sockaddr_in
+	int im_sock_connect_timeout(char *remoteip, unsigned short port, int timeout_sec) 
+
+
+2.2.3: 2016-06-16
+=================
+. fixed: endian handling (-DREVERSED)
+	void im_pktHead_set_methodType(IMPacketHeadPtr head, MthdType type)
+
+
+2.2.3: 2016-06-10
+=================
+. TODO: if-711 cmdDataInfoVOs
+. TODO: if-333 cmdDataInfoVOs
+
+
+2.2.3: 2016-06-14
+=================
+. added: if-333 functionalities
+
+
+2.2.3: 2016-06-10
+=================
+. added: if-711 functionalities
+
+2.2.3: 2016-06-09
+=================
+. added: body_util.c
+
+
+2.2.2: 2016-05-12
+=================
+. fixed: "deviceId" TO "devId"
+	static JSON_Value* jsonwrap_new_value_devColecDataVOs_item(int m2mSvcNo, char *devId)
+	static JSON_Value* jsonwrap_new_value_if224(char* extrSysId, char* devId, char* athnRqtNo)
+	static JSON_Value* jsonwrap_new_value_devColecDataVOs_item(int m2mSvcNo, char *devId)
+
+2.2.2: 2016-05-12
+=================
+. added
+	int im_init_complexdata_with_devid(char *devId);
+	int im_send_numdata_with_devid(char *devId, char *tagid, double val, long long trxid);
+	int im_send_strdata_with_devid(char *devId, char *tagid, char *val, long long trxid);
+
+
+2.2.2: 2016-05-10
+=================
+
+. added
+	int im_set_if332_insert(char* devId, char* devName, char* makerCd, char* modelCd, char* ipAddr, char* statCd, char* frmwrVer);
+	int im_set_if332_delete(char* devId, char* devName, char* makerCd, char* modelCd, char* ipAddr, char* statCd, char* frmwrVer);
+	int im_set_if332_update(char* devId, char* devName, char* makerCd, char* modelCd, char* ipAddr, char* statCd, char* frmwrVer);
+	int im_set_if332_update_all(char* devId, char* devName, char* makerCd, char* modelCd, char* ipAddr, char* statCd, char* frmwrVer);
+	int im_set_if332_avp (char* attr, char* val);
+	int im_connected();
+
+
+2.2.2: 2016-05-03
+=================
+
+. fixed: read the first 4 bytes for length
+	int im_action_recv_packet()
+
+2.2.1: 2016-04-25
+=================
+
+. added report/IF-525
+. added IF-332
+
+
+
