@@ -1,0 +1,107 @@
+############################################
+# This is a project standard makefile..
+############################################
+
+SHELL	= CMD.EXE
+# set Path=$Path;C:\Programs\Dev-Cpp\MinGW64\bin
+# mingw32-make.exe -f Makefile.DevCpp
+
+############################################
+DEVCPP = C:\Programs\Dev-Cpp\MinGW64
+############################################
+
+CPP	= $(DEVCPP)/bin/g++.exe
+CC	= $(DEVCPP)/bin/gcc.exe
+RM	= $(DEVCPP)\bin\rm -f
+AR	= $(DEVCPP)\bin\ar r
+RANLIB	= $(DEVCPP)\bin\ranlib
+
+###########################################
+# IOTMAKERS_SDK_HOME
+###########################################
+IOTMAKERS_SDK_HOME = ..
+IOTMAKERS_SDK_LIB_PATH = $(IOTMAKERS_SDK_HOME)/lib
+IOTMAKERS_SDK_LIBNAME = libiotmakers_win32.a
+
+###########################################
+# FLAGs
+###########################################
+CFLAGS = -W -O0 -g \
+	-D_IM_C_MQTT_ \
+	-DWIN32 -m32
+
+INCLUDE  =  -I. -I./third_party
+
+###########################################
+# SOURCE TREE
+###########################################
+HEADER = \
+
+C_OBJECT = \
+	./third_party/org.eclipse.paho.mqtt.c/src/Clients.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/Heap.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/LinkedList.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/Log.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/MQTTClient.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/MQTTPacket.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/MQTTPacketOut.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/MQTTPersistence.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/MQTTPersistenceDefault.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/MQTTProtocolClient.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/MQTTProtocolOut.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/Messages.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/SSLSocket.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/Socket.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/SocketBuffer.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/StackTrace.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/Thread.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/Tree.o \
+	./third_party/org.eclipse.paho.mqtt.c/src/utf-8.o \
+	./netio/mqtt.o \
+	./third_party/parson/parson.o \
+	./util/log.o \
+	./util/util.o \
+	./util/thread.o \
+	./packet/head_ext.o \
+	./packet/head.o \
+	./packet/body.o \
+	./packet/packet.o \
+	./packet/body_200.o \
+	./packet/body_400.o \
+	./packet/body_500.o \
+	./action/if200_auth/if224_auth_channel_dev_tcp.o \
+	./action/if200_auth/if231_auth_keepalive.o \
+	./action/if400_collection/if411_collection_data.o \
+	./action/if500_control/if525_control_data.o \
+	./action/recv_packet.o \
+	./action/send_packet.o \
+	./base/base.o \
+	./iotmakers_api.o \
+
+
+###########################################
+# BUILD
+###########################################
+TARGET	= $(IOTMAKERS_SDK_LIB_PATH)/$(IOTMAKERS_SDK_LIBNAME)
+all: $(TARGET)
+
+$(TARGET): $(C_OBJECT)
+	$(AR) $(TARGET) $(C_OBJECT) 
+#	if [ -f $(TARGET) ]; then /bin/rm $(TARGET); fi;
+
+###########################################
+# Compile
+###########################################
+.SUFFIXES : .o .asm .c .cxx .bas .sc .y .yxx .l .lxx  .pc
+
+.c.o : $(C_SOURCE) $(PC_SOURCE)
+	$(CC) $(CFLAGS) $(INCLUDE) -c $*.c -o $*.o
+
+###########################################
+# Util
+###########################################
+clean : $(C_SOURCE)
+	rm -rf  $(C_OBJECT)
+
+
+
