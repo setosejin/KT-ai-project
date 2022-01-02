@@ -7,6 +7,10 @@
 
 `pip install (requests numpy)`
 
+도구 간 인자값(param) 전달
+https://docs.google.com/spreadsheets/d/1zCA_pkAaTVcHSV_qDiRqwGmKEgctMkMEr7fhRDSkPtY/edit#gid=0
+
+
 
 ## 과제개요서
 
