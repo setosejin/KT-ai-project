@@ -47,7 +47,7 @@ var options = {
   scriptPath: '',
   args: ['value1'],
   //args: ['value1', 'value2', 'value3'],
-  encoding: 'utf8'
+  encoding: null
 };
 
 PythonShell.run('weather_data_API.py', options, function (err, results) {
@@ -57,4 +57,7 @@ PythonShell.run('weather_data_API.py', options, function (err, results) {
   console.log('max_ondo:: '+ results[0]);
   console.log('min_ondo:: '+ results[1]);
   console.log('avg_ondo:: '+ results[2]); //string[]
+  console.log('wind_power:: '+ results[3]);
+  console.log('humidity:: '+ results[4]);
+  console.log('우산:: ' + results[5]);
 });
