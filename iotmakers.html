@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+    </script>
+ 
+    <script>
+        function sleep(ms){
+            const wakeUpTime = Date.now() + ms;
+            while (Date.now() < wakeUpTime) {}
+        }
+
+
+        $.ajax({
+            method: "GET",
+            url: "https://iotmakers.kt.com:443/api/v1/streams/ckdtjqD1640956149662/log/last",
+            //url: "https://iotmakers.kt.com:443/api/v1/streams/ckdtjqD1640956149662/log?period=0&from=1641099600000&count=5",
+            data: { },
+            headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDExMDIwOTk5NzQsIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMTA5Mjk5LCJqdGkiOiJlMWVjYTExNy1lNTg4LTQzNDMtYWVjOS1mNGYzZmNhZGViOTkifQ.JLbKEZZ-hB6BE3Ur5zMY1lrMm7NrLNKAapfVhUN2_xxTckXNvKAfAgAi4PmX397se6afkntww6YjrNNjXaZUk5ClipyHDlbV9Jg3Ezr_GPeJ1IV3rFazkREcbk-QmvPZV6w4JWUT8RDLU2w2uTz0tbazBq9IfFe9sBwS8o3_ZcnbwvkGUKZAvvwTPWFQrDXEfIIEw4ehBaw_hcL7q3Z4fN6PhtUPF7zTo1Qtf7NxGPE6zxmw5OrF45s6NWXBAOzwlmyGed7gv_LPpSi8QkmuDFyzGXKyQhb2yNWkbhspiXrBM02Cd6oO1wXEBD5VfhmRxXR8cx9LQhjmshCty54gJQ"}
+
+        }).done(function (msg) {
+            //alert("Data Saved: " + msg);
+            for(var i = 0; i < 3; i++){
+
+                console.log(msg.data[0].attributes)
+                sleep(1000);
+            }
+        });
+    </script>
+</body>
+</html>
+
