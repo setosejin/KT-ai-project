@@ -1,5 +1,6 @@
 # KT-ai-project
 * 10조 프로젝트 git 페이지입니다.
+* 
 `git clone https://github.com/setosejin/KT-ai-project.git`
 
 `npm install`
