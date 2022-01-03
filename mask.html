@@ -87,5 +87,13 @@
         <div id="umbrella"></div>
     </center>
     
+    <script>
+        var umb = document.cookie;
+        umb = umb[26];
+        console.log(umb);
+        if(umb === '4'){
+            document.getElementById("umbrella").innerText = "우산을 챙겨주세요!"
+        }
+    </script>
 </body>
 </html>

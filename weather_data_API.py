@@ -63,9 +63,9 @@ for i in range(len(items['item'])):
 
 max_TMP = max(tmp_data)
 min_TMP = min(tmp_data)
-range_TMP = round(numpy.mean(tmp_data),2)
+range_TMP = round(numpy.mean(tmp_data),1)
 max_WSD = max(wsd_data)
-range_REH = round(numpy.mean(reh_data),2)
+range_REH = round(numpy.mean(reh_data),1)
 
 
 print(str(max_TMP))
