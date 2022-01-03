@@ -38,12 +38,12 @@ OFLAGS = -lwiringPi
 # SOURCE TREE
 ###########################################
 C_OBJECT = \
-	send_button_flag.o 
+	send_check_flag.o 
 
 ###########################################
 # BUILD
 ###########################################
-PRODUCT = send_button_flag
+PRODUCT = send_check_flag
 all: $(PRODUCT)
 
 $(PRODUCT) : $(C_OBJECT) 

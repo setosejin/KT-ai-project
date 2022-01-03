@@ -93,8 +93,6 @@ PythonShell.run('weather_data_API.py', options, function (err, results) {
   cont += "\n";
   saveFile(cont);
 
-}).PythonShell.run({
-
 });
 
 //세션이나 쿠키로 넘기는 내용
