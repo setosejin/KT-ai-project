@@ -3,13 +3,10 @@
 <script language="javascript">
  
     function dress_info() {
-        var img_src;
-        // for(var i=1; i<=9; i++) {
-        //     if(user_area == i) {
-        //     img_src = './img/'+ i +'.png' ;
-        //     }
-        // }
-        img_src = './img/1.png';
+        var img_src = './img/';
+        var num = document.cookie[62];
+        img_src += num;
+        img_src += '.png';
         return img_src;
     }
 </script>

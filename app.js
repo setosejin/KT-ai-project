@@ -28,7 +28,7 @@ app.get('/main', (req, res) => {
     res.cookie('wind', pythonDataw, 1);
     res.cookie('hum', pythonDatah, 1);
     res.cookie('umb', pythonDatau, 1);
-
+    res.cookie('img', pythonDatac, 1);
     //console.log(req.cookies);
     setCookie("expend", "true");
     res.sendFile(__dirname + '/main.html')
@@ -76,14 +76,14 @@ PythonShell.run('./cloth_AI/cloth.py', options, function (err, results) {
   console.log('wind_power:: '+ results[3]);
   console.log('humiditiy:: '+ results[4]);
   console.log('Umbrella:: '+ results[5]);
-  //console.log('Umbrella:: '+ results[6]);
+  console.log('image:: '+ results[6]);
   pythonDataM = results[0];
   pythonDatam = results[1];
   pythonDataa = results[2];
   pythonDataw = results[3];
   pythonDatah = results[4];
   pythonDatau = results[5];
-  //pythonDatac = results[6];
+  pythonDatac = results[6];
   //file에 저장할 내용
   var cont = ".";
   

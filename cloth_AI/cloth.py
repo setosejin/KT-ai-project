@@ -90,4 +90,4 @@ if max(pop_data) <= 0.4 :
 else:
   print(1004) #우산 챙기기 유도
 
-print("예측된 value : ", model_pred[0])
+print(model_pred[0])
