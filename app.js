@@ -13,7 +13,13 @@ app.get('/', (req, res) => {
     res.redirect('/main')
 })
 
+let pythonData = "py";
 app.get('/main', (req, res) => {
+    console.log(pythonData);
+    
+    res.cookie('max', pythonData, 1);
+    console.log(req.cookies);
+    setCookie("expend", "true");
     res.sendFile(__dirname + '/main.html')
 })
 
@@ -33,13 +39,26 @@ app.get('/mask', (req, res) =>{
 
 // 3000 포트로 서버 오픈
 app.listen(3000, function() {
-    console.log("start! express server on port 3000")
+    console.log("start! express server on port 3000");
+    
 })
 
+// var http = require("http");
+// var u = require("url");
+// var server = http.createServer(function(req, res){
+//     var url = request.url;
+//     var strucedUrl = u.parse(url);
+//     console.log(strucedUrl);
+// })
+
+
+//const cookieParser = require('cookie-parser');
+
 const fs = require('fs');
+// const jsdom = require('jsdom');
+// const { JSDOM } = jsdom;
 
 const {PythonShell} = require('python-shell');
-//const { fstat } = require('fs');
 
 var options = {
   mode: 'text',
@@ -58,7 +77,12 @@ PythonShell.run('weather_data_API.py', options, function (err, results) {
   console.log('max_ondo:: '+ results[0]);
   console.log('min_ondo:: '+ results[1]);
   console.log('avg_ondo:: '+ results[2]); //string[]
+  console.log('wind_power:: '+ results[3]);
+  console.log('humiditiy:: '+ results[4]);
+  console.log('Umbrella:: '+ results[5]);
 
+  pythonData = results[0];
+  //file에 저장할 내용
   var cont = "";
   cont += results[0];
   cont += "\n";
@@ -67,7 +91,25 @@ PythonShell.run('weather_data_API.py', options, function (err, results) {
   cont += results[2];
   cont += "\n";
   saveFile(cont);
+
 });
+
+//세션이나 쿠키로 넘기는 내용
+var setCookie = function(name, value) {
+    // var content;
+    // fs.readFile('./main.html', function read(err, data) {
+    //     if (err) {
+    //         throw err;
+    //     }
+    //     content = data;
+    // });
+    
+    // const dom = new JSDOM(content);
+    // dom.window.document.cookie="result=8"
+    // console.log(dom.window.document.cookie);
+    
+};
+    
 
 function saveFile(content){
     fs.writeFileSync('weather.txt', content);
