@@ -8,7 +8,6 @@ app.use('/img', express.static('img'));
 app.set('view engine','ejs');
 
 app.get('/', (req, res) => {
-    
     res.redirect('/main')
 })
 
@@ -93,6 +92,8 @@ PythonShell.run('weather_data_API.py', options, function (err, results) {
   cont += results[2];
   cont += "\n";
   saveFile(cont);
+
+}).PythonShell.run({
 
 });
 
