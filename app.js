@@ -26,7 +26,7 @@ app.get('/cody', (req, res) =>{
 })
 
 app.get('/mask', (req, res) =>{
-    res.sendFile(__dirname + '/iotmakers.html')
+    res.sendFile(__dirname + '/mask.html') // mask, iotmakers
 })
 
 
