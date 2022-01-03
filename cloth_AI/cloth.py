@@ -63,4 +63,4 @@ with open("saved_model.pkl", 'rb') as f:
 arr= np.array([[max_TMP, min_TMP , range_TMP, max_WSD, range_REH]])
 model_pred = model.predict(arr)
 
-print("예측된 value : ", model_pred[0])
+print(model_pred[0])
