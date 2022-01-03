@@ -4,6 +4,12 @@ import json
 import datetime
 import pickle
 import numpy as np
+import sys
+
+if len(sys.argv) > 1:
+  output = sys.argv[1]
+else:
+  output = "no argument found"
 
 #아래 url은 받은 api 페이지 참고문서에 보면 적혀있습니다.
 weather_URL = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'
@@ -16,7 +22,7 @@ nx = "63"
 ny = "122"
 
 #요청변수
-params ={'serviceKey' : service_key, 'pageNo' : '1', 'numOfRows' : '1000', 'dataType' : 'JSON', 'base_date' : base_date, 'base_time' : '0800', 'nx' : nx, 'ny' : ny }
+params ={'serviceKey' : service_key, 'pageNo' : '1', 'numOfRows' : '1000', 'dataType' : 'JSON', 'base_date' : base_date, 'base_time' : base_time, 'nx' : nx, 'ny' : ny }
 
 response = requests.get(weather_URL, params=params)
 
@@ -31,6 +37,7 @@ weather_data = dict()
 tmp_data = list()
 wsd_data = list()
 reh_data = list()
+pop_data = list()
 
 for i in range(len(items['item'])):
   if items['item'][i]['fcstDate'] == base_date:
@@ -43,8 +50,11 @@ for i in range(len(items['item'])):
     if items['item'][i]['category'] == 'REH':
       reh = float(items['item'][i]['fcstValue'])
       reh_data.append(reh)
+    if items['item'][i]['category'] == 'POP':
+      pop = float(items['item'][i]['fcstValue'])
+      pop_data.append(pop)
       
-items['item']
+#items['item']
 import numpy
 
 max_TMP =max(tmp_data)
@@ -63,4 +73,15 @@ with open("saved_model.pkl", 'rb') as f:
 arr= np.array([[max_TMP, min_TMP , range_TMP, max_WSD, range_REH]])
 model_pred = model.predict(arr)
 
-print("예측된 value : ", model_pred[0])
+print(str(max_TMP))
+print(str(min_TMP))
+print(str(range_TMP))
+print(str(max_WSD))
+print(str(range_REH))
+
+if max(pop_data) <= 0.4 :
+  print(1000) #우산 안챙겨
+else:
+  print(1004) #우산 챙기기 유도
+
+print(model_pred[0])

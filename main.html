@@ -3,8 +3,57 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>🌞InnaSHOW🌞</title>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+    </script>
+ 
+    <script>
+        function sleep(ms){
+            const wakeUpTime = Date.now() + ms;
+            while (Date.now() < wakeUpTime) {}
+        }
+
+        $.ajax({
+            method: "GET",
+            url: "https://iotmakers.kt.com:443/api/v1/streams/ckdtjqD1640956149662/log/last",
+            //url: "https://iotmakers.kt.com:443/api/v1/streams/ckdtjqD1640956149662/log?period=0&from=1641099600000&count=5",
+            data: { },
+            headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEyMzk4MDE0NjcsIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMjQ3MDAxLCJqdGkiOiJlZDdkMjFiNi1jYTk2LTQxZWUtODRlOS0zYmRkMjhiOTcxNDkifQ.f_zhLcV0yyT-0_hlvJ4Lyj_PLY047L7sXYvzE0lo6hCLLf3O1q_xZqiOhJGTieonkcFlJVMX5M2lEuCaXgYzlcUVRRAeX4xYDEa03rr43UhPD-KCGxWA9MXnlVfuXmmayZcutMN5tYlXRXU6GPO8V5dqOGSum8n5l3cNiT1_VlrmaXrnHxQ_bF1hb6cHLPnhi_9GUoXRffcsWMUYX3ugC_qCZ5ZgsMqeQKuYkhbuh3THYN0YAiEdhDO5ecOJMPhdRkWCYPBweTY853gKLP2rIRAG2nwkfPlEmr0RIrQ5RTtYPtiIfqHla4YQd_E6oBlogw15Meqj6zqdf05kAbovtw"}
+
+        }).done(function (msg) {
+            //alert("Data Saved: " + msg);
+            // for(var i = 0; ; i++){  //무한루프로 바뀐다면
+ 
+            //     console.log(msg.data[0].attributes) //iotMakters alarm 마지막 로그 가지고 와서 출력함
+                
+            //     if (msg.data[0].attributes == '0' ){
+            //         let state_awake = document.getElementById("alarm_test")
+            //         state_awake.appendChild(document.createElement("p"))
+
+            //         state_awake.childNodes[0].innerHTML = "ALARM OFF";
+
+            //     }
+                
+            for(var i = 0; i<3 ; i++){  //3번째에
+ 
+                console.log(msg.data[0].attributes) //iotMakters alarm의 마지막 로그 가지고 와서 1(1값의 의미가 뭡니까)을 출력함
+                //device openAPI 값 attributes alarms 뿐
+
+                let state_awake = document.getElementById("alarm_test")
+                state_awake.appendChild(document.createElement("p"))
+                state_awake.childNodes[0].innerHTML = "ALARM OFF";   //태그 추가
+                sleep(1000);
+            }
+
+            // checkpoint 버튼은 어떤 오픈 API로 갖고 오는지_ 태그 스트림 마지막 로그
+            // checkpoint start, check는 어떤 신호였는지 파악해서 어떤 오픈 api로 메인에 값을 넘기느냐
+        });
+    </script>
+
 
     <style>
         ul {
@@ -80,7 +129,11 @@
 
         <br><br>
 
-        <div id="webcam-container" onload="init()"></div>
+        <div id ="alarm_test"></div>
+
+
+
+        <!-- <div id="webcam-container" onload="init()"></div>
         <div id="label-container"></div>
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
         <script
@@ -143,7 +196,7 @@
                 }
             }
             //init();
-        </script>
+        </script> -->
 
 
     </center>

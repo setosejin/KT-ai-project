@@ -5,18 +5,20 @@ var express = require('express')
 var app = express()
 
 app.use('/img', express.static('img'));
-app.set('view engine','ejs');
+//app.set('view engine','ejs');
 
 app.get('/', (req, res) => {
     res.redirect('/main')
 })
 
+//메인 쿠키(서버에 페이지가 담고 있는 날씨정보) 초기화
 let pythonDataM = "py";
 let pythonDatam = "py";
 let pythonDataa = "py";
 let pythonDataw = "py";
 let pythonDatah = "py";
 let pythonDatau = "py";
+let pythonDatac = "py";
 
 app.get('/main', (req, res) => {
     //console.log(pythonData);
@@ -27,7 +29,7 @@ app.get('/main', (req, res) => {
     res.cookie('wind', pythonDataw, 1);
     res.cookie('hum', pythonDatah, 1);
     res.cookie('umb', pythonDatau, 1);
-
+    res.cookie('img', pythonDatac, 1);
     //console.log(req.cookies);
     setCookie("expend", "true");
     res.sendFile(__dirname + '/main.html')
@@ -40,7 +42,6 @@ app.get('/cody', (req, res) =>{
 app.get('/mask', (req, res) =>{
     res.sendFile(__dirname + '/mask.html') // mask, iotmakers
 })
-
 
 
 // 3000 포트로 서버 오픈
@@ -65,7 +66,7 @@ var options = {
   encoding: null
 };
 
-PythonShell.run('weather_data_API.py', options, function (err, results) {
+PythonShell.run('./cloth_AI/cloth.py', options, function (err, results) {
 
   if (err) throw err;
   console.log('results: %j',results);
@@ -73,9 +74,9 @@ PythonShell.run('weather_data_API.py', options, function (err, results) {
   console.log('min_ondo:: '+ results[1]);
   console.log('avg_ondo:: '+ results[2]); //string[]
   console.log('wind_power:: '+ results[3]);
-
-  console.log('humiditiy:: '+ results[4]);
+  console.log('humidity:: '+ results[4]);
   console.log('Umbrella:: '+ results[5]);
+  console.log('image:: '+ results[6]);
 
   pythonDataM = results[0];
   pythonDatam = results[1];
@@ -85,17 +86,10 @@ PythonShell.run('weather_data_API.py', options, function (err, results) {
   pythonDatau = results[5];
   //file에 저장할 내용
   var cont = "";
-  cont += results[0];
-  cont += "\n";
-  cont += results[1];
-  cont += "\n";
-  cont += results[2];
-  cont += "\n";
+ 
   saveFile(cont);
 
-}).PythonShell.run({
-
-});
+})
 
 //세션이나 쿠키로 넘기는 내용
 var setCookie = function(name, value) {
