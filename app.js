@@ -13,12 +13,24 @@ app.get('/', (req, res) => {
     res.redirect('/main')
 })
 
-let pythonData = "py";
+let pythonDataM = "py";
+let pythonDatam = "py";
+let pythonDataa = "py";
+let pythonDataw = "py";
+let pythonDatah = "py";
+let pythonDatau = "py";
+
 app.get('/main', (req, res) => {
-    console.log(pythonData);
+    //console.log(pythonData);
     
-    res.cookie('max', pythonData, 1);
-    console.log(req.cookies);
+    res.cookie('max', pythonDataM, 1);
+    res.cookie('min', pythonDatam, 1);
+    res.cookie('avg', pythonDataa, 1);
+    res.cookie('wind', pythonDataw, 1);
+    res.cookie('hum', pythonDatah, 1);
+    res.cookie('umb', pythonDatau, 1);
+
+    //console.log(req.cookies);
     setCookie("expend", "true");
     res.sendFile(__dirname + '/main.html')
 })
@@ -42,17 +54,6 @@ app.listen(3000, function() {
     console.log("start! express server on port 3000");
     
 })
-
-// var http = require("http");
-// var u = require("url");
-// var server = http.createServer(function(req, res){
-//     var url = request.url;
-//     var strucedUrl = u.parse(url);
-//     console.log(strucedUrl);
-// })
-
-
-//const cookieParser = require('cookie-parser');
 
 const fs = require('fs');
 // const jsdom = require('jsdom');
@@ -81,7 +82,12 @@ PythonShell.run('weather_data_API.py', options, function (err, results) {
   console.log('humiditiy:: '+ results[4]);
   console.log('Umbrella:: '+ results[5]);
 
-  pythonData = results[0];
+  pythonDataM = results[0];
+  pythonDatam = results[1];
+  pythonDataa = results[2];
+  pythonDataw = results[3];
+  pythonDatah = results[4];
+  pythonDatau = results[5];
   //file에 저장할 내용
   var cont = "";
   cont += results[0];
