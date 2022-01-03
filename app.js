@@ -36,6 +36,7 @@ app.listen(3000, function() {
     console.log("start! express server on port 3000")
 })
 
+const fs = require('fs');
 
 const {PythonShell} = require('python-shell');
 //const { fstat } = require('fs');
@@ -57,4 +58,18 @@ PythonShell.run('weather_data_API.py', options, function (err, results) {
   console.log('max_ondo:: '+ results[0]);
   console.log('min_ondo:: '+ results[1]);
   console.log('avg_ondo:: '+ results[2]); //string[]
+
+  var cont = "";
+  cont += results[0];
+  cont += "\n";
+  cont += results[1];
+  cont += "\n";
+  cont += results[2];
+  cont += "\n";
+  saveFile(cont);
 });
+
+function saveFile(content){
+    fs.writeFileSync('weather.txt', content);
+}
+

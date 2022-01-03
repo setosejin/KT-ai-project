@@ -44,7 +44,7 @@ tmp_data = list()
 wsd_data = list()
 reh_data = list()
 for i in range(len(items['item'])):
-  if items['item'][i]['fcstDate'] == '20220102':
+  if items['item'][i]['fcstDate'] == '20220103':
     if items['item'][i]['category'] == 'TMP':
       tmp = float(items['item'][i]['fcstValue'])
       tmp_data.append(tmp)
