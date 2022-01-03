@@ -4,9 +4,8 @@ var express = require('express')
 // express 는 함수이므로, 반환값을 변수에 저장한다.
 var app = express()
 
-// app.get('/', function(req, res){
-//     res.send("<h1>hi~~~~ GIGA Genie</h1>")
-// })
+app.use('/img', express.static('img'));
+app.set('view engine','ejs');
 
 app.get('/', (req, res) => {
     
@@ -33,10 +32,6 @@ app.get('/main', (req, res) => {
     //console.log(req.cookies);
     setCookie("expend", "true");
     res.sendFile(__dirname + '/main.html')
-})
-
-app.get('/alarm', (req, res) =>{
-    res.sendFile(__dirname + '/alarm.html')
 })
 
 app.get('/cody', (req, res) =>{
