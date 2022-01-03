@@ -17,6 +17,7 @@ let pythonDataa = "py";
 let pythonDataw = "py";
 let pythonDatah = "py";
 let pythonDatau = "py";
+let pythonDatac = "py";
 
 app.get('/main', (req, res) => {
     //console.log(pythonData);
@@ -65,35 +66,28 @@ var options = {
   encoding: null
 };
 
-PythonShell.run('weather_data_API.py', options, function (err, results) {
+PythonShell.run('./cloth_AI/cloth.py', options, function (err, results) {
 
   if (err) throw err;
   console.log('results: %j',results);
   console.log('max_ondo:: '+ results[0]);
   console.log('min_ondo:: '+ results[1]);
-  console.log('avg_ondo:: '+ results[2]); //string[]
+  console.log('avg_ondo:: '+ results[2]);
   console.log('wind_power:: '+ results[3]);
-
   console.log('humiditiy:: '+ results[4]);
   console.log('Umbrella:: '+ results[5]);
-
+  //console.log('Umbrella:: '+ results[6]);
   pythonDataM = results[0];
   pythonDatam = results[1];
   pythonDataa = results[2];
   pythonDataw = results[3];
   pythonDatah = results[4];
   pythonDatau = results[5];
+  //pythonDatac = results[6];
   //file에 저장할 내용
-  var cont = "";
-  cont += results[0];
-  cont += "\n";
-  cont += results[1];
-  cont += "\n";
-  cont += results[2];
-  cont += "\n";
+  var cont = ".";
+  
   saveFile(cont);
-
-}).PythonShell.run({
 
 });
 

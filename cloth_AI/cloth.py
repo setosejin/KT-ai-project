@@ -71,7 +71,7 @@ range_REH = round(numpy.mean(reh_data),2)
 
 
 #저장된 학습모델 불러오기
-with open("saved_model.pkl", 'rb') as f:
+with open("./cloth_AI/saved_model.pkl", 'rb') as f:
     model = pickle.load(f)
 
 
