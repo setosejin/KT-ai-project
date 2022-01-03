@@ -80,6 +80,32 @@
 
         <br><br>
 
+        <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+    </script>
+ 
+    <script>
+        function sleep(ms){
+            const wakeUpTime = Date.now() + ms;
+            while (Date.now() < wakeUpTime) {}
+        }
+
+        $.ajax({
+            method: "GET",
+            url: "https://iotmakers.kt.com:443/api/v1/streams/ckdtjqD1640956149662/log/last",  
+            data: { },
+            headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjEiLCJ1c2VyX25hbWUiOiJsZW1vbjA1MDkwIiwicHViX3RpbWUiOjE2NDEyMDM4MzI0NDUsIm1icl9pZCI6ImxlbW9uMDUwOTAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyMiIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi6rmA7IS47KeEIiwiZXhwIjoxNjQxMjExMDMyLCJqdGkiOiJhZTFiYjQ4MC1lNGJmLTQxN2UtODg2NS1kNDhjODIwMGU1YmEifQ.iBWpwyBf-BLJUasp9SVjsdFJj8eKnjGjkOqs5cEZDLwdcDaBN98VLrwrrEWRrQS5wAT02V91YdK8nJ9iBtQedF9b_dnrGbi3sPG4-eQoJ5Nl-w-gMwMekP_GrGmKCbHtYOMFJVtGtZpGY4VCU3Sn-fGtjoGd8wEdVBk6soYlFh6MaItDZKXQCP2ZlkXE3o3At48a1j7ow0xBQ-cO5vUMhV2x5NPhZR8Iva0WidoT2Wy-tghnEuzZTC2UE3_jN0snFZUMW37NxdV2JnBBNeG-X8L5LlbvLiBnN4S6aeaoGRfe4-Bo0nlpxUqnb2rpmC9f_A1LCoHSbGtbDBxR1BhxPg"}
+
+        }).done(function (msg) {
+            console.log(msg.data[0].attributes);
+            // for(var i = 0; i < 3; i++){
+
+            //     console.log(msg.data[0].attributes)
+            //     sleep(1000);
+            // }
+        });
+    </script>
+
         <div id="webcam-container" onload="init()"></div>
         <div id="label-container"></div>
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
