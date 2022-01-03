@@ -4,21 +4,33 @@ var express = require('express')
 // express 는 함수이므로, 반환값을 변수에 저장한다.
 var app = express()
 
-// app.get('/', function(req, res){
-//     res.send("<h1>hi~~~~ GIGA Genie</h1>")
-// })
+app.use('/img', express.static('img'));
+app.set('view engine','ejs');
 
 app.get('/', (req, res) => {
-    
     res.redirect('/main')
 })
 
-app.get('/main', (req, res) => {
-    res.sendFile(__dirname + '/main.html')
-})
+let pythonDataM = "py";
+let pythonDatam = "py";
+let pythonDataa = "py";
+let pythonDataw = "py";
+let pythonDatah = "py";
+let pythonDatau = "py";
 
-app.get('/alarm', (req, res) =>{
-    res.sendFile(__dirname + '/alarm.html')
+app.get('/main', (req, res) => {
+    //console.log(pythonData);
+    
+    res.cookie('max', pythonDataM, 1);
+    res.cookie('min', pythonDatam, 1);
+    res.cookie('avg', pythonDataa, 1);
+    res.cookie('wind', pythonDataw, 1);
+    res.cookie('hum', pythonDatah, 1);
+    res.cookie('umb', pythonDatau, 1);
+
+    //console.log(req.cookies);
+    setCookie("expend", "true");
+    res.sendFile(__dirname + '/main.html')
 })
 
 app.get('/cody', (req, res) =>{
@@ -33,12 +45,15 @@ app.get('/mask', (req, res) =>{
 
 // 3000 포트로 서버 오픈
 app.listen(3000, function() {
-    console.log("start! express server on port 3000")
+    console.log("start! express server on port 3000");
+    
 })
 
+const fs = require('fs');
+// const jsdom = require('jsdom');
+// const { JSDOM } = jsdom;
 
 const {PythonShell} = require('python-shell');
-//const { fstat } = require('fs');
 
 var options = {
   mode: 'text',
@@ -58,6 +73,48 @@ PythonShell.run('weather_data_API.py', options, function (err, results) {
   console.log('min_ondo:: '+ results[1]);
   console.log('avg_ondo:: '+ results[2]); //string[]
   console.log('wind_power:: '+ results[3]);
-  console.log('humidity:: '+ results[4]);
-  console.log('우산:: ' + results[5]);
+
+  console.log('humiditiy:: '+ results[4]);
+  console.log('Umbrella:: '+ results[5]);
+
+  pythonDataM = results[0];
+  pythonDatam = results[1];
+  pythonDataa = results[2];
+  pythonDataw = results[3];
+  pythonDatah = results[4];
+  pythonDatau = results[5];
+  //file에 저장할 내용
+  var cont = "";
+  cont += results[0];
+  cont += "\n";
+  cont += results[1];
+  cont += "\n";
+  cont += results[2];
+  cont += "\n";
+  saveFile(cont);
+
+}).PythonShell.run({
+
 });
+
+//세션이나 쿠키로 넘기는 내용
+var setCookie = function(name, value) {
+    // var content;
+    // fs.readFile('./main.html', function read(err, data) {
+    //     if (err) {
+    //         throw err;
+    //     }
+    //     content = data;
+    // });
+    
+    // const dom = new JSDOM(content);
+    // dom.window.document.cookie="result=8"
+    // console.log(dom.window.document.cookie);
+    
+};
+    
+
+function saveFile(content){
+    fs.writeFileSync('weather.txt', content);
+}
+

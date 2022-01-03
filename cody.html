@@ -1,12 +1,126 @@
+
+<!doctype HTML>
+<script language="javascript">
+ 
+    function dress_info() {
+        var img_src;
+        // for(var i=1; i<=9; i++) {
+        //     if(user_area == i) {
+        //     img_src = './img/'+ i +'.png' ;
+        //     }
+        // }
+        img_src = './img/1.png';
+        return img_src;
+    }
+</script>
 <html>
-<head>
-    
-</head>
-<body>
-    <center>
-        <h>옷 추천 페이지</h>
-        <br>
-        <a href="main">뒤로</a>
-    </center>
-</body>
+    <head>
+        
+        <title>cloth</title>
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+        <style>
+            ul {
+                background-color: paleturquoise;
+                width: 100%;
+                list-style-type: none;
+                margin: -2.9px;
+                padding: 0;
+                overflow: hidden;
+                text-align: center;
+                border:5px solid paleturquoise;
+            }
+
+            li {
+                display: inline-block;
+
+            }
+
+            li a {
+                display: block;
+                color: black;
+                padding: 12px;
+                text-decoration: none;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            li a:hover {
+                background-color: paleturquoise;
+                color: white;
+            }
+            body{
+                background-color : lightcyan;
+            } 
+            
+            h1{
+                font-family: 'Nanum Myeongjo', serif;
+                text-align:center;
+            }
+            h2{
+                text-align:center;
+            }
+            
+            /* img{
+                position : absolute;
+                left : 520px;
+                top : 120px;
+            } */
+            .dress{
+                width:300px;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <h1><img src='./img/InnaSHOW_logo.png' alt="인나쇼" width="350" height="60"/></h1>
+        <ul>
+            <li><a onclick="movepage1()">
+                <img src='./img/main_logo_off.png' alt="Main" width="180" height="60" 
+                onmouseover="this.src='./img/main_logo_on.png'"
+                onmouseout="this.src='./img/main_logo_off.png'">
+            </a></li>
+            <li><a onclick="movepage2()">
+                <img src="./img/cody_logo_off.png" alt="Cody" width="180" height="60" 
+                onmouseover="this.src='./img/cody_logo_on.png'"
+                onmouseout="this.src='./img/cody_logo_off.png'">
+            </a></li>
+            <li><a onclick="movepage3()">
+                <img src="./img/mask_logo_off.png" alt="Mask" width="180" height="60" 
+                onmouseover="this.src='./img/mask_logo_on.png'"
+                onmouseout="this.src='./img/mask_logo_off.png'">
+            </a></li>
+        </ul>
+        <script type="text/javascript">
+            function movepage1(){
+                location.href = "/main"
+            }
+            function movepage2(){
+                location.href = "/cody"
+            }
+            function movepage3(){
+                location.href = "/mask"
+            }
+        </script>
+        <br><br>
+
+
+        <div align="center" style="border: 1px;">  
+            <img id="dress" src="">
+            <script>document.getElementById('dress').src=dress_info()</script>
+        </div>
+        <!--     <% if (cloth === 1) { %> <img src = '1패딩.png', width="500" height="500"/> <% } %>
+            <% elif (cloth === 2) { %> <img src = '2코트.png', width="500" height="500"/> <% } %>
+            <% else if (cloth === 3) { %> <img src = '3가죽자켓.png', width="500" height="500"/> <% } %>
+            <% else if (cloth === 4) { %> <img src = '4니트.png', width="500" height="500"/> <% } %>
+            <% else if (cloth === 5) { %> <img src = '5후드티.png', width="500" height="500"/> <% } %>
+            <% else if (cloth === 6) { %> <img src = '6긴팔.png', width="500" height="500"/> <% } %>
+            <% else if (cloth === 7) { %> <img src = '7반팔.png', width="500" height="500"/> <%  %>
+            <% else if (cloth === 8) { %> <img src = '8통기성.png', width="500" height="500"/> <% } %>
+            <% else if (cloth === 9 ) { %> <img src = '9가디건.png', width="500" height="500"/> <% } %> -->
+
+        <div style=width:520px; height:600px; >오늘의 날씨는 :</div>
+
+    </body>
 </html>
