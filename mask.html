@@ -106,7 +106,7 @@
 
         // Convenience function to setup a webcam
         const flip = true; // whether to flip the webcam
-        webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+        webcam = new tmImage.Webcam(800, 400, flip); // width, height, flip
         await webcam.setup(); // request access to the webcam
         await webcam.play();
         window.requestAnimationFrame(loop);
@@ -132,7 +132,8 @@
         const prediction = await model.predict(webcam.canvas);
 
         let maskContainer = document.getElementById("mask-check");
-        maskContainer.appendChild(document.createElement("div"));
+        maskContainer.appendChild(document.createElement("p"));
+        
         // for (let i = 0; i < maxPredictions; i++) {
         //     const classPrediction =
         //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
@@ -160,7 +161,7 @@
     
     <script>
         var umb = document.cookie;
-        umb = umb[26];
+        umb = umb[55];
         console.log(umb);
         if(umb === '4'){
             document.getElementById("umbrella").innerText = "우산을 챙겨주세요!"

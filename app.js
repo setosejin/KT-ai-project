@@ -72,8 +72,9 @@ PythonShell.run('./cloth_AI/cloth.py', options, function (err, results) {
   console.log('results: %j',results);
   console.log('max_ondo:: '+ results[0]);
   console.log('min_ondo:: '+ results[1]);
-  console.log('avg_ondo:: '+ results[2]); //string[]
+  console.log('avg_ondo:: '+ results[2]);
   console.log('wind_power:: '+ results[3]);
+
   console.log('humidity:: '+ results[4]);
   console.log('Umbrella:: '+ results[5]);
   console.log('image:: '+ results[6]);
@@ -84,12 +85,15 @@ PythonShell.run('./cloth_AI/cloth.py', options, function (err, results) {
   pythonDataw = results[3];
   pythonDatah = results[4];
   pythonDatau = results[5];
+  pythonDatac = results[6];
   //file에 저장할 내용
-  var cont = "";
- 
+
+  var cont = ".";
+  
   saveFile(cont);
 
-})
+});
+
 
 //세션이나 쿠키로 넘기는 내용
 var setCookie = function(name, value) {

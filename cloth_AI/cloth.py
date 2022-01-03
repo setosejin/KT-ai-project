@@ -11,6 +11,7 @@ if len(sys.argv) > 1:
 else:
   output = "no argument found"
 
+
 #아래 url은 받은 api 페이지 참고문서에 보면 적혀있습니다.
 weather_URL = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'
 service_key = 'C3f1VJ8VEgQNFvd+fBrLMuqEf3hboln4Y+EEFwqvAV84D0HF+xj3cZjSYxkYMMt/ITx+ELxAgIq9S9/lfOoEoQ=='
@@ -33,6 +34,11 @@ data['data'] = base_date
 
 weather_data = dict()
 
+for item in items['item']:
+    # 기온
+      if item['category'] == 'TMP':
+          weather_data['tmp'] = item['fcstValue']  
+
 #items를 조건문으로 비교하며 각각의 list에 분류해줌
 tmp_data = list()
 wsd_data = list()
@@ -53,8 +59,9 @@ for i in range(len(items['item'])):
     if items['item'][i]['category'] == 'POP':
       pop = float(items['item'][i]['fcstValue'])
       pop_data.append(pop)
-      
+ 
 #items['item']
+
 import numpy
 
 max_TMP =max(tmp_data)
@@ -65,7 +72,7 @@ range_REH = round(numpy.mean(reh_data),2)
 
 
 #저장된 학습모델 불러오기
-with open("saved_model.pkl", 'rb') as f:
+with open("./cloth_AI/saved_model.pkl", 'rb') as f:
     model = pickle.load(f)
 
 
@@ -85,3 +92,4 @@ else:
   print(1004) #우산 챙기기 유도
 
 print(model_pred[0])
+
