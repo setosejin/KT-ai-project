@@ -46,7 +46,7 @@ reh_data = list()
 pop_data = list()
 
 for i in range(len(items['item'])):
-  if items['item'][i]['fcstDate'] == '20220102':
+  if items['item'][i]['fcstDate'] == base_date:
     if items['item'][i]['category'] == 'TMP':
       tmp = float(items['item'][i]['fcstValue'])
       tmp_data.append(tmp)
@@ -74,8 +74,8 @@ print(str(range_TMP))
 print(str(max_WSD))
 print(str(range_REH))
 
+if max(pop_data) <= 0.5 :
 
-if max(pop_data) <= 0.4 :
   print(1000) #우산 안챙겨
 else:
   print(1004) #우산 챙기기 유도

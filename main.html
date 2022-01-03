@@ -37,7 +37,8 @@
 
 <body>
     <center>
-        <script>
+        
+        <!-- <script>
             const {PythonShell} = require('python-shell');
 
             var options = {
@@ -58,7 +59,7 @@
             console.log('min_ondo:: '+ results[1]);
             console.log('avg_ondo:: '+ results[2]); //string[]
             }); 
-        </script>
+        </script> -->
 
         <ul>
             <li><a onclick="movepage1()">Alarm</a></li>
@@ -66,6 +67,7 @@
             <li><a onclick="movepage3()">Mask</a></li>
         </ul>
         <script type="text/javascript">
+            document.cookie = "result=9";
             function movepage1(){
                 location.href = "/alarm"
             }
