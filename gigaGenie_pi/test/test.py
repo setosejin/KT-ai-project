@@ -11,12 +11,13 @@ import time
 import os
 import vlc
 import multiprocessing
+import threading
+import queue
 
-def Alarm(second, alarm):
-    time.sleep(second)
-    
-    alarm.play()
-    print("?")
+# def Alarm(alarm):
+#     #time.sleep(second)
+#     alarm.play()
+#     print("played alarm")
 
 def find_time(result_mesg):
     res = []
@@ -35,29 +36,39 @@ def find_time(result_mesg):
 
 def main():
     KWSID = ['기가지니', '지니야', '친구야', '자기야']
-    alarm = vlc.MediaPlayer("alarm.mp3")
-    while 1:
-        recog = kws.btn_test(KWSID[0])
+    alarm = vlc.MediaPlayer("show_alarm.mp3")
+    alarm_thread = threading.Thread(target=Alarm, args=(alarm,))
+    standard_time = -1
+    second = 0
+    que = queue.Queue()
+
+    while True:
+        recog, alarm = kws.btn_test(standard_time, second, que, KWSID[0])
+
         # 기가지니 호출 200
         if recog == 200:
             print("기가지니 호출됨")
             result_mesg = gv2t.getVoice2Text_alarm()
             print(result_mesg)
-            if '알람' in result_mesg:
+
+            if ('알람' in result_mesg) and ( find_time(result_mesg) != -1):
+                standard_time = time.time()
                 print("알람을 찾았어요.")
                 second = find_time(result_mesg)
                 second.reverse()
-                second = ''.join(second)
-
-                # p1 = multiprocessing.Process(target=Alarm, args=(int(second), alarm))
-                # p1.start() 
+                second = int(''.join(second))
+                print(second)
                 
         # 버튼 누르는 이벤트 100
         elif recog == 100:
             print('알람을 끕니다 스누즈 모드입니다.')
+            alarm.stop()
+
+            standard_time = time.time()
+            second = 10
             alarm_off = vlc.MediaPlayer("alarm_off.mp3")
             alarm_off.play()
-            os.system('./tt')
+            os.system('./send_button_flag')
 
 if __name__ == '__main__':
     main()

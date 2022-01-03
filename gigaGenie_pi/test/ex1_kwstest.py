@@ -11,10 +11,18 @@ import RPi.GPIO as GPIO
 import ktkws # KWS
 import MicrophoneStream as MS
 import vlc
+import threading
+import time
+import os
+import sys
+sys.path.append("../../motion/")
+import main_openpose as mo
+#from ...motion import main_openpose
 
 KWSID = ['기가지니', '지니야', '친구야', '자기야']
 RATE = 16000
 CHUNK = 512
+wake_up = False
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -54,13 +62,34 @@ def detect():
 				#MS.play_file("../data/sample_sound.wav")
 				return 200
 
-def btn_detect():
+def Alarm(alarm, que):
+	global wake_up
+	print("played alarm")
+	alarm.play()
+	os.system("./send_alarm_flag")
+	wake_up = mo.inference()
+	print(que)
+	
+
+def btn_detect(standard_time, second, que):
 	global btn_status
+
+	alarm = vlc.MediaPlayer("show_alarm.mp3")
+	alarm_thread = threading.Thread(target=Alarm, args=(alarm, que))
+	trigger = True
+
 	response = vlc.MediaPlayer("response.mp3")
 	with MS.MicrophoneStream(RATE, CHUNK) as stream:
 		audio_generator = stream.generator()
 
 		for content in audio_generator:
+			now = time.time()
+			# print(type(now))
+			# print(type(standard_time))
+			#print(second)
+			if ((now - standard_time) > second) and (standard_time > 0) and trigger: 
+				alarm_thread.start()
+				trigger = False
 			GPIO.output(31, GPIO.HIGH)
 			rc = ktkws.detect(content)
 
@@ -74,9 +103,9 @@ def btn_detect():
 				GPIO.output(31, GPIO.HIGH)
 				response.play()
 				#MS.play_file("../data/sample_sound.wav")
-				return 200
-			if (rc == 2):
-				return 100
+				return 200, alarm
+			elif (rc == 2):
+				return 100, alarm
 
 
 def test(key_word = '기가지니'):
@@ -92,7 +121,7 @@ def test(key_word = '기가지니'):
 	ktkws.stop()
 	return rc
 
-def btn_test(key_word = '기가지니'):
+def btn_test(standard_time, second, que, key_word = '기가지니'):
 	#global btn_status
 	rc = ktkws.init("../data/kwsmodel.pack")
 	print ('init rc = %d' % (rc))
@@ -100,11 +129,11 @@ def btn_test(key_word = '기가지니'):
 	print ('start rc = %d' % (rc))
 	print ('\n버튼을 눌러보세요~\n')
 	ktkws.set_keyword(KWSID.index(key_word))
-	rc = btn_detect()
+	rc, alarm = btn_detect(standard_time, second, que)
 	print ('detect rc = %d' % (rc))
 	print ('\n\n호출어가 정상적으로 인식되었습니다.\n\n')
 	ktkws.stop()
-	return rc
+	return rc, alarm
 
 def main():
 	test()
