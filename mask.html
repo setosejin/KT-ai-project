@@ -5,9 +5,76 @@
             position: absolute;
             width:30%;
         }
+        ul {
+                background-color: paleturquoise;
+                width: 100%;
+                list-style-type: none;
+                margin: -2.9px;
+                padding: 0;
+                overflow: hidden;
+                text-align: center;
+                border:5px solid paleturquoise;
+            }
+
+            li {
+                display: inline-block;
+
+            }
+
+            li a {
+                display: block;
+                color: black;
+                padding: 12px;
+                text-decoration: none;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            li a:hover {
+                background-color: paleturquoise;
+                color: white;
+            }
+            body{
+                background-color : lightcyan;
+            } 
+            
+            h1{
+                font-family: 'Nanum Myeongjo', serif;
+                text-align:center;
+            }
     </style>
 </head>
 <body>
+    <h1><img src='./img/InnaSHOW_logo.png' alt="인나쇼" width="350" height="60"/></h1>
+        <ul>
+            <li><a onclick="movepage1()">
+                <img src='./img/main_logo_off.png' alt="Main" width="180" height="60" 
+                onmouseover="this.src='./img/main_logo_on.png'"
+                onmouseout="this.src='./img/main_logo_off.png'">
+            </a></li>
+            <li><a onclick="movepage2()">
+                <img src="./img/cody_logo_off.png" alt="Cody" width="180" height="60" 
+                onmouseover="this.src='./img/cody_logo_on.png'"
+                onmouseout="this.src='./img/cody_logo_off.png'">
+            </a></li>
+            <li><a onclick="movepage3()">
+                <img src="./img/mask_logo_off.png" alt="Mask" width="180" height="60" 
+                onmouseover="this.src='./img/mask_logo_on.png'"
+                onmouseout="this.src='./img/mask_logo_off.png'">
+            </a></li>
+        </ul>
+        <script type="text/javascript">
+            function movepage1(){
+                location.href = "/main"
+            }
+            function movepage2(){
+                location.href = "/cody"
+            }
+            function movepage3(){
+                location.href = "/mask"
+            }
+        </script>
+
     <center>
         <!-- <button type="button" onclick="init()">Start</button> -->
         <div id="webcam-container"></div>
