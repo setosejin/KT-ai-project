@@ -37,6 +37,28 @@
 
 <body>
     <center>
+        <script>
+            const {PythonShell} = require('python-shell');
+
+            var options = {
+            mode: 'text',
+            pythonPath: '', //없어도 정상 실행 파이썬 설치경로가 환경변수로 잡혔기 때문
+            pythonOptions: ['-u'],
+            scriptPath: '',
+            args: ['value1'],
+            //args: ['value1', 'value2', 'value3'],
+            encoding: 'utf8'
+            };
+
+            PythonShell.run('weather_data_API.py', options, function (err, results) {
+
+            if (err) throw err;
+            console.log('results: %j',results);
+            console.log('max_ondo:: '+ results[0]);
+            console.log('min_ondo:: '+ results[1]);
+            console.log('avg_ondo:: '+ results[2]); //string[]
+            }); 
+        </script>
 
         <ul>
             <li><a onclick="movepage1()">Alarm</a></li>

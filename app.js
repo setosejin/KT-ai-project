@@ -38,7 +38,7 @@ app.listen(3000, function() {
 
 
 const {PythonShell} = require('python-shell');
-const { fstat } = require('fs');
+//const { fstat } = require('fs');
 
 var options = {
   mode: 'text',
