@@ -157,7 +157,6 @@
     init();
     </script>
     <center>
-        <h>마스크 썻니?</h>
         <div id="mask-check"></div>
         
         <br>
@@ -168,10 +167,13 @@
     
     <script>
         var umb = document.cookie;
-        umb = umb[55]; //slicing 필요
-        console.log(umb);
-        if(umb === '4'){
+        
+        
+        if(umb.indexOf("1004") >= 0){
             document.getElementById("umbrella").innerText = "우산을 챙겨주세요!"
+        }
+        else{
+            document.getElementById("umbrella").innerText = "날씨가 맑아요! 좋은 하루 되세요!"
         }
     </script>
 </body>
