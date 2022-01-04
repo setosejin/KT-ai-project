@@ -1,53 +1,54 @@
-14:54:05 INF netio/sock_posix.c 0146 im_sock_co: connecting 220.90.216.90:10020
-14:54:05 DBG action/send_packet.c 0063 im_action_: [[[
-14:54:05 DBG action/send_packet.c 0070 im_action_: len_serialized=[139]
-14:54:05 DBG util/log.c 0176 im_log_wri: 0000: 00 00 00 87 11 01 00 23 | 60 e0 fd e0 d3 61 00 00   .......#`....a..
-14:54:05 DBG iotmakers_api.c 0299 im_loop   : sent=[0]pkts, recv=[0]pkts
-14:54:05 DBG util/log.c 0176 im_log_wri: 0010: 00 00 00 00 00 00 00 00 | 00 00 00 00 00 00 00 00   ................
-14:54:05 DBG util/log.c 0176 im_log_wri: 0020: 00 00 01 01 03 00 00 7b | 22 65 78 74 72 53 79 73   .......{"extrSys
-14:54:05 DBG util/log.c 0176 im_log_wri: 0030: 49 64 22 3a 22 4f 50 45 | 4e 5f 54 43 50 5f 30 30   Id":"OPEN_TCP_00
-14:54:05 DBG util/log.c 0176 im_log_wri: 0040: 31 50 54 4c 30 30 31 5f | 31 30 30 30 30 31 31 31   1PTL001_10000111
-14:54:05 DBG util/log.c 0176 im_log_wri: 0050: 32 37 22 2c 22 64 65 76 | 49 64 22 3a 22 63 6b 64   27","devId":"ckd
-14:54:05 DBG util/log.c 0176 im_log_wri: 0060: 74 6a 71 44 31 36 34 30 | 39 35 36 31 34 39 36 36   tjqD164095614966
-14:54:05 DBG util/log.c 0176 im_log_wri: 0070: 32 22 2c 22 61 74 68 6e | 52 71 74 4e 6f 22 3a 22   2","athnRqtNo":"
-14:54:05 DBG util/log.c 0176 im_log_wri: 0080: 35 72 37 62 32 69 38 79 | 75 22 7d                  5r7b2i8yu"}
-14:54:05 DBG action/send_packet.c 0050 im_action_: [139]bytes sent
-14:54:05 DBG action/send_packet.c 0078 im_action_: ]]]
-14:54:05 INF iotmakers_api.c 0238 im_auth_de: wating the device authenticated.
-14:54:06 DBG action/recv_packet.c 0115 im_action_: packetLength=[139].
-14:54:06 INF iotmakers_api.c 0238 im_auth_de: wating the device authenticated.
-14:54:06 DBG action/recv_packet.c 0084 im_action_: {{{
-14:54:06 DBG action/recv_packet.c 0085 im_action_: [139]bytes received
-14:54:06 DBG util/log.c 0176 im_log_wri: 0000: 11 01 00 23 a0 e0 fd e0 | d3 61 00 00 00 00 00 00   ...#.....a......
-14:54:06 DBG util/log.c 0176 im_log_wri: 0010: 00 00 3b 9a f6 02 00 00 | 00 00 00 00 00 02 00 00   ..;.............
-14:54:06 DBG util/log.c 0176 im_log_wri: 0020: 03 00 64 7b 22 61 74 68 | 6e 52 71 74 4e 6f 22 3a   ..d{"athnRqtNo":
-14:54:06 DBG util/log.c 0176 im_log_wri: 0030: 22 35 72 37 62 32 69 38 | 79 75 22 2c 22 61 74 68   "5r7b2i8yu","ath
-14:54:06 DBG util/log.c 0176 im_log_wri: 0040: 6e 4e 6f 22 3a 22 30 30 | 30 30 30 30 30 30 33 42   nNo":"000000003B
-14:54:06 DBG util/log.c 0176 im_log_wri: 0050: 39 41 46 36 30 32 30 30 | 30 30 30 30 30 30 30 30   9AF6020000000000
-14:54:06 DBG util/log.c 0176 im_log_wri: 0060: 30 30 30 30 30 32 22 2c | 22 72 65 73 70 43 64 22   000002","respCd"
-14:54:06 DBG util/log.c 0176 im_log_wri: 0070: 3a 22 31 30 30 22 2c 22 | 72 65 73 70 4d 73 67 22   :"100","respMsg"
-14:54:06 DBG util/log.c 0176 im_log_wri: 0080: 3a 22 53 55 43 43 45 53 | 53 22 7d                  :"SUCCESS"}
-14:54:06 INF action/if200_auth/if224_auth_channel_dev_tcp.c 0077 im_action_: The device channel has been authenticated. [000000003B9AF6020000000000000002]
-14:54:06 DBG action/recv_packet.c 0101 im_action_: }}}
-14:54:06 DBG iotmakers_api.c 0299 im_loop   : sent=[1]pkts, recv=[1]pkts
-14:54:07 INF iotmakers_api.c 0241 im_auth_de: device authenticated.
-14:54:07 DBG action/send_packet.c 0063 im_action_: [[[
-14:54:07 DBG action/send_packet.c 0070 im_action_: len_serialized=[244]
-14:54:07 DBG util/log.c 0176 im_log_wri: 0000: 00 00 00 f0 11 01 00 23 | 61 9b 02 e1 d3 61 00 00   .......#a....a..
-14:54:07 DBG util/log.c 0176 im_log_wri: 0010: 00 00 30 30 30 30 30 30 | 30 30 33 42 39 41 46 36   ..000000003B9AF6
-14:54:07 DBG util/log.c 0176 im_log_wri: 0020: 30 32 01 01 03 00 00 7b | 22 65 78 74 72 53 79 73   02.....{"extrSys
-14:54:07 DBG util/log.c 0176 im_log_wri: 0030: 49 64 22 3a 22 4f 50 45 | 4e 5f 54 43 50 5f 30 30   Id":"OPEN_TCP_00
-14:54:07 DBG util/log.c 0176 im_log_wri: 0040: 31 50 54 4c 30 30 31 5f | 31 30 30 30 30 31 31 31   1PTL001_10000111
-14:54:07 DBG util/log.c 0176 im_log_wri: 0050: 32 37 22 2c 22 64 65 76 | 43 6f 6c 65 63 44 61 74   27","devColecDat
-14:54:07 DBG util/log.c 0176 im_log_wri: 0060: 61 56 4f 73 22 3a 5b 7b | 22 64 65 76 49 64 22 3a   aVOs":[{"devId":
-14:54:07 DBG util/log.c 0176 im_log_wri: 0070: 22 63 6b 64 74 6a 71 44 | 31 36 34 30 39 35 36 31   "ckdtjqD16409561
-14:54:07 DBG util/log.c 0176 im_log_wri: 0080: 34 39 36 36 32 22 2c 22 | 63 6f 6c 65 63 52 6f 77   49662","colecRow
-14:54:07 DBG util/log.c 0176 im_log_wri: 0090: 56 4f 73 22 3a 5b 7b 22 | 6f 63 63 44 74 22 3a 22   VOs":[{"occDt":"
-14:54:07 DBG util/log.c 0176 im_log_wri: 00a0: 32 30 32 32 2d 30 31 2d | 30 34 20 31 34 3a 35 34   2022-01-04 14:54
-14:54:07 DBG util/log.c 0176 im_log_wri: 00b0: 3a 30 37 2e 31 36 37 22 | 2c 22 73 6e 73 6e 44 61   :07.167","snsnDa
-14:54:07 DBG util/log.c 0176 im_log_wri: 00c0: 74 61 49 6e 66 6f 56 4f | 73 22 3a 5b 7b 22 64 61   taInfoVOs":[{"da
-14:54:07 DBG util/log.c 0176 im_log_wri: 00d0: 74 61 54 79 70 65 43 64 | 22 3a 22 64 72 65 73 73   taTypeCd":"dress
-14:54:07 DBG util/log.c 0176 im_log_wri: 00e0: 22 2c 22 73 6e 73 6e 56 | 61 6c 22 3a 31 7d 5d 7d   ","snsnVal":1}]}
-14:54:07 DBG util/log.c 0176 im_log_wri: 00f0: 5d 7d 5d 7d                                       ]}]}
-14:54:07 DBG action/send_packet.c 0050 im_action_: [244]bytes sent
-14:54:07 DBG action/send_packet.c 0078 im_action_: ]]]
+15:05:02 INF netio/sock_posix.c 0146 im_sock_co: connecting 220.90.216.90:10020
+15:05:02 DBG action/send_packet.c 0063 im_action_: [[[
+15:05:02 DBG iotmakers_api.c 0299 im_loop   : sent=[0]pkts, recv=[0]pkts
+15:05:02 DBG action/send_packet.c 0070 im_action_: len_serialized=[139]
+15:05:02 DBG util/log.c 0176 im_log_wri: 0000: 00 00 00 87 11 01 00 23 | 60 e0 8e e3 d3 61 00 00   .......#`....a..
+15:05:02 DBG util/log.c 0176 im_log_wri: 0010: 00 00 00 00 00 00 00 00 | 00 00 00 00 00 00 00 00   ................
+15:05:02 DBG util/log.c 0176 im_log_wri: 0020: 00 00 01 01 03 00 00 7b | 22 65 78 74 72 53 79 73   .......{"extrSys
+15:05:02 DBG util/log.c 0176 im_log_wri: 0030: 49 64 22 3a 22 4f 50 45 | 4e 5f 54 43 50 5f 30 30   Id":"OPEN_TCP_00
+15:05:02 DBG util/log.c 0176 im_log_wri: 0040: 31 50 54 4c 30 30 31 5f | 31 30 30 30 30 31 31 31   1PTL001_10000111
+15:05:02 DBG util/log.c 0176 im_log_wri: 0050: 32 37 22 2c 22 64 65 76 | 49 64 22 3a 22 63 6b 64   27","devId":"ckd
+15:05:02 DBG util/log.c 0176 im_log_wri: 0060: 74 6a 71 44 31 36 34 30 | 39 35 36 31 34 39 36 36   tjqD164095614966
+15:05:02 DBG util/log.c 0176 im_log_wri: 0070: 32 22 2c 22 61 74 68 6e | 52 71 74 4e 6f 22 3a 22   2","athnRqtNo":"
+15:05:02 DBG util/log.c 0176 im_log_wri: 0080: 35 72 37 62 32 69 38 79 | 75 22 7d                  5r7b2i8yu"}
+15:05:02 DBG action/send_packet.c 0050 im_action_: [139]bytes sent
+15:05:02 DBG action/send_packet.c 0078 im_action_: ]]]
+15:05:02 INF iotmakers_api.c 0238 im_auth_de: wating the device authenticated.
+15:05:03 DBG action/recv_packet.c 0115 im_action_: packetLength=[139].
+15:05:03 INF iotmakers_api.c 0238 im_auth_de: wating the device authenticated.
+15:05:03 DBG action/recv_packet.c 0084 im_action_: {{{
+15:05:03 DBG action/recv_packet.c 0085 im_action_: [139]bytes received
+15:05:03 DBG util/log.c 0176 im_log_wri: 0000: 11 01 00 23 a0 e0 8e e3 | d3 61 00 00 00 00 00 00   ...#.....a......
+15:05:03 DBG util/log.c 0176 im_log_wri: 0010: 00 00 3b 9a f6 02 00 00 | 00 00 00 00 00 02 00 00   ..;.............
+15:05:03 DBG util/log.c 0176 im_log_wri: 0020: 03 00 64 7b 22 61 74 68 | 6e 52 71 74 4e 6f 22 3a   ..d{"athnRqtNo":
+15:05:03 DBG util/log.c 0176 im_log_wri: 0030: 22 35 72 37 62 32 69 38 | 79 75 22 2c 22 61 74 68   "5r7b2i8yu","ath
+15:05:03 DBG util/log.c 0176 im_log_wri: 0040: 6e 4e 6f 22 3a 22 30 30 | 30 30 30 30 30 30 33 42   nNo":"000000003B
+15:05:03 DBG util/log.c 0176 im_log_wri: 0050: 39 41 46 36 30 32 30 30 | 30 30 30 30 30 30 30 30   9AF6020000000000
+15:05:03 DBG util/log.c 0176 im_log_wri: 0060: 30 30 30 30 30 32 22 2c | 22 72 65 73 70 43 64 22   000002","respCd"
+15:05:03 DBG util/log.c 0176 im_log_wri: 0070: 3a 22 31 30 30 22 2c 22 | 72 65 73 70 4d 73 67 22   :"100","respMsg"
+15:05:03 DBG util/log.c 0176 im_log_wri: 0080: 3a 22 53 55 43 43 45 53 | 53 22 7d                  :"SUCCESS"}
+15:05:03 INF action/if200_auth/if224_auth_channel_dev_tcp.c 0077 im_action_: The device channel has been authenticated. [000000003B9AF6020000000000000002]
+15:05:03 DBG action/recv_packet.c 0101 im_action_: }}}
+15:05:03 DBG iotmakers_api.c 0299 im_loop   : sent=[1]pkts, recv=[1]pkts
+15:05:04 INF iotmakers_api.c 0241 im_auth_de: device authenticated.
+15:05:04 DBG action/send_packet.c 0063 im_action_: [[[
+15:05:04 DBG action/send_packet.c 0070 im_action_: len_serialized=[244]
+15:05:04 DBG util/log.c 0176 im_log_wri: 0000: 00 00 00 f0 11 01 00 23 | 61 9b 93 e3 d3 61 00 00   .......#a....a..
+15:05:04 DBG util/log.c 0176 im_log_wri: 0010: 00 00 30 30 30 30 30 30 | 30 30 33 42 39 41 46 36   ..000000003B9AF6
+15:05:04 DBG util/log.c 0176 im_log_wri: 0020: 30 32 01 01 03 00 00 7b | 22 65 78 74 72 53 79 73   02.....{"extrSys
+15:05:04 DBG util/log.c 0176 im_log_wri: 0030: 49 64 22 3a 22 4f 50 45 | 4e 5f 54 43 50 5f 30 30   Id":"OPEN_TCP_00
+15:05:04 DBG util/log.c 0176 im_log_wri: 0040: 31 50 54 4c 30 30 31 5f | 31 30 30 30 30 31 31 31   1PTL001_10000111
+15:05:04 DBG util/log.c 0176 im_log_wri: 0050: 32 37 22 2c 22 64 65 76 | 43 6f 6c 65 63 44 61 74   27","devColecDat
+15:05:04 DBG util/log.c 0176 im_log_wri: 0060: 61 56 4f 73 22 3a 5b 7b | 22 64 65 76 49 64 22 3a   aVOs":[{"devId":
+15:05:04 DBG util/log.c 0176 im_log_wri: 0070: 22 63 6b 64 74 6a 71 44 | 31 36 34 30 39 35 36 31   "ckdtjqD16409561
+15:05:04 DBG util/log.c 0176 im_log_wri: 0080: 34 39 36 36 32 22 2c 22 | 63 6f 6c 65 63 52 6f 77   49662","colecRow
+15:05:04 DBG util/log.c 0176 im_log_wri: 0090: 56 4f 73 22 3a 5b 7b 22 | 6f 63 63 44 74 22 3a 22   VOs":[{"occDt":"
+15:05:04 DBG util/log.c 0176 im_log_wri: 00a0: 32 30 32 32 2d 30 31 2d | 30 34 20 31 35 3a 30 35   2022-01-04 15:05
+15:05:04 DBG util/log.c 0176 im_log_wri: 00b0: 3a 30 34 2e 35 39 35 22 | 2c 22 73 6e 73 6e 44 61   :04.595","snsnDa
+15:05:04 DBG iotmakers_api.c 0299 im_loop   : sent=[1]pkts, recv=[1]pkts
+15:05:04 DBG util/log.c 0176 im_log_wri: 00c0: 74 61 49 6e 66 6f 56 4f | 73 22 3a 5b 7b 22 64 61   taInfoVOs":[{"da
+15:05:04 DBG util/log.c 0176 im_log_wri: 00d0: 74 61 54 79 70 65 43 64 | 22 3a 22 73 74 61 72 74   taTypeCd":"start
+15:05:04 DBG util/log.c 0176 im_log_wri: 00e0: 22 2c 22 73 6e 73 6e 56 | 61 6c 22 3a 30 7d 5d 7d   ","snsnVal":0}]}
+15:05:04 DBG util/log.c 0176 im_log_wri: 00f0: 5d 7d 5d 7d                                       ]}]}
+15:05:04 DBG action/send_packet.c 0050 im_action_: [244]bytes sent
+15:05:04 DBG action/send_packet.c 0078 im_action_: ]]]

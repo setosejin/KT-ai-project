@@ -7,6 +7,11 @@
         var umb = document.cookie;
         //console.log(umb.indexOf("img"));
         var num = document.cookie[umb.indexOf("img") + 4];// slicing 필요
+
+
+        // if(num === 9){
+
+        // }
         img_src += num;
         img_src += '.png';
         return img_src;
@@ -92,6 +97,10 @@
             </a></li>
         </ul>
         <script type="text/javascript">
+            
+            var timeoutID;
+            timeoutID = setTimeout(movepage1, 10000);
+
             function movepage1(){
                 location.href = "/main"
             }
@@ -119,7 +128,7 @@
             <% else if (cloth === 8) { %> <img src = '8통기성.png', width="500" height="500"/> <% } %>
             <% else if (cloth === 9 ) { %> <img src = '9가디건.png', width="500" height="500"/> <% } %> -->
 
-        <div style=width:520px; height:600px; >오늘의 날씨는 :</div>
+        <!-- <div style=width:520px; height:600px; >오늘의 날씨는 :</div> -->
 
     </body>
 </html>
