@@ -18,7 +18,7 @@ service_key = 'C3f1VJ8VEgQNFvd+fBrLMuqEf3hboln4Y+EEFwqvAV84D0HF+xj3cZjSYxkYMMt/I
 today = datetime.datetime.today()
 #today = datetime.date.today()-datetime.timedelta(1) # 새벽에 값을 못 받아와서 전날로 바꿔버림 
 base_date = today.strftime("%Y%m%d")
-base_time = "1400"
+base_time = "0500"
 
 nx = "63"
 ny = "122"

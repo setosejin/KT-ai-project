@@ -1,5 +1,6 @@
 <html>
 <head>
+    <link rel="icon" type="image/x-icon" href="./img/icon.ico" />
     <style>
         .webcam-container{
             position: absolute;
@@ -41,6 +42,13 @@
             h1{
                 font-family: 'Nanum Myeongjo', serif;
                 text-align:center;
+            }
+            p{
+                font-family: 'Nanum Myeongjo', serif;
+                font-size : 30;
+            }
+            .umbrella{
+                font-family: 'Nanum Myeongjo', serif;
             }
     </style>
 </head>
@@ -106,7 +114,7 @@
 
         // Convenience function to setup a webcam
         const flip = true; // whether to flip the webcam
-        webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+        webcam = new tmImage.Webcam(800, 400, flip); // width, height, flip
         await webcam.setup(); // request access to the webcam
         await webcam.play();
         window.requestAnimationFrame(loop);
@@ -132,7 +140,8 @@
         const prediction = await model.predict(webcam.canvas);
 
         let maskContainer = document.getElementById("mask-check");
-        maskContainer.appendChild(document.createElement("div"));
+        maskContainer.appendChild(document.createElement("p"));
+        
         // for (let i = 0; i < maxPredictions; i++) {
         //     const classPrediction =
         //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
@@ -149,21 +158,19 @@
     init();
     </script>
     <center>
-        <h>마스크 썻니?</h>
         <div id="mask-check"></div>
-        
-        <br>
-        <a href="main">뒤로</a>
-
-        <div id="umbrella"></div>
+        <p id="umbrella"></p>
     </center>
     
     <script>
         var umb = document.cookie;
-        umb = umb[26];
-        console.log(umb);
-        if(umb === '4'){
+        
+        
+        if(umb.indexOf("1004") >= 0){
             document.getElementById("umbrella").innerText = "우산을 챙겨주세요!"
+        }
+        else{
+            document.getElementById("umbrella").innerText = "날씨가 맑아요! 좋은 하루 되세요!"
         }
     </script>
 </body>

@@ -23,7 +23,7 @@ nx = "63"
 ny = "122"
 
 #요청변수
-params ={'serviceKey' : service_key, 'pageNo' : '1', 'numOfRows' : '1000', 'dataType' : 'JSON', 'base_date' : base_date, 'base_time' : '0800', 'nx' : nx, 'ny' : ny }
+params ={'serviceKey' : service_key, 'pageNo' : '1', 'numOfRows' : '1000', 'dataType' : 'JSON', 'base_date' : base_date, 'base_time' : base_time, 'nx' : nx, 'ny' : ny }
 
 response = requests.get(weather_URL, params=params)
 
@@ -59,8 +59,9 @@ for i in range(len(items['item'])):
     if items['item'][i]['category'] == 'POP':
       pop = float(items['item'][i]['fcstValue'])
       pop_data.append(pop)
-      
-# items['item']
+ 
+#items['item']
+
 import numpy
 
 max_TMP =max(tmp_data)
@@ -71,7 +72,7 @@ range_REH = round(numpy.mean(reh_data),2)
 
 
 #저장된 학습모델 불러오기
-with open("saved_model.pkl", 'rb') as f:
+with open("./cloth_AI/saved_model.pkl", 'rb') as f:
     model = pickle.load(f)
 
 
@@ -90,4 +91,5 @@ if max(pop_data) <= 0.4 :
 else:
   print(1004) #우산 챙기기 유도
 
-print("예측된 value : ", model_pred[0])
+print(model_pred[0])
+

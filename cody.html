@@ -3,19 +3,18 @@
 <script language="javascript">
  
     function dress_info() {
-        var img_src;
-        // for(var i=1; i<=9; i++) {
-        //     if(user_area == i) {
-        //     img_src = './img/'+ i +'.png' ;
-        //     }
-        // }
-        img_src = './img/1.png';
+        var img_src = './img/';
+        var umb = document.cookie;
+        //console.log(umb.indexOf("img"));
+        var num = document.cookie[umb.indexOf("img") + 4];// slicing 필요
+        img_src += num;
+        img_src += '.png';
         return img_src;
     }
 </script>
 <html>
     <head>
-        
+        <link rel="icon" type="image/x-icon" href="./img/icon.ico" />
         <title>cloth</title>
         <meta charset="utf-8">
         <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
