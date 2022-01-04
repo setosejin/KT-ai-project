@@ -43,8 +43,9 @@
                     state_awake.childNodes[0].innerHTML = "버튼이 눌려 SNOOZE 되었습니다.";
                 }
                 else if(msg.data[0].attributes["check"] === 1){
-                    state_awake.childNodes[0].innerHTML = "완전히 일어났습니다. 좋은 아침이에요.";
-                    state_awake.appendChild(document.createElement("img"))
+                    let pic_awake = document.getElementById("pic")
+                    pic_awake.childNodes[0].innerHTML = "완전히 일어났습니다. 좋은 아침이에요.";
+                    pic_awake.appendChild(document.createElement("img"))
                     var img = document.querySelector("img");
                     //img.src = "";
                     check_flag = 1;
@@ -148,6 +149,7 @@
 
         <div id ="alarm_test"></div>
 
+        <div id="pic"></div>
     </center>
 
 </body>
