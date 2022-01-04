@@ -1,5 +1,6 @@
 <html>
 <head>
+    <link rel="icon" type="image/x-icon" href="./img/icon.ico" />
     <style>
         .webcam-container{
             position: absolute;
@@ -39,8 +40,14 @@
             } 
             
             h1{
-                font-family: 'Nanum Myeongjo', serif;
                 text-align:center;
+            }
+            p{
+                font-family: 'Nanum Myeongjo', serif;
+                font-size : 30;
+            }
+            .umbrella{
+                font-family: 'Nanum Myeongjo', serif;
             }
     </style>
 </head>
@@ -161,7 +168,7 @@
     
     <script>
         var umb = document.cookie;
-        umb = umb[55];
+        umb = umb[55]; //slicing 필요
         console.log(umb);
         if(umb === '4'){
             document.getElementById("umbrella").innerText = "우산을 챙겨주세요!"
