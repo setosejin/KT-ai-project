@@ -19,6 +19,7 @@
         }
 
         var timeId = null;
+        var check_flag = 0;
         timeId = setInterval(printStatus(), 1000);
         
         function printStatus(){
@@ -26,7 +27,7 @@
                 method: "GET",
                 url: "https://iotmakers.kt.com:443/api/v1/streams/ckdtjqD1640956149662/log/last",
                 data: { },
-                headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEyNjQ2NjY0ODcsIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMjcxODY2LCJqdGkiOiIyZThmOTdhMS00ZWIzLTQ5M2UtYjEwYi05Y2VhZThiOTVkNDMifQ.W2qamoHBitds-btqDA7tuJjuPwWsnHbrSkJ7tokQItTu0i6WBbLwHyAr27lPxTEjkfgVVliZl3JNWguUnocHVj95iQKn5H4RHRRu4ljSASmFXRmRb_7xcuA2Iryja7-dIWGEC9fmixbLUy6uMzHn6Z6ODkwu03-sKIheINokNNgbz9xU-UScSsy-h6318FXJwVKbSykZ9-8hl31F8yCyZwrR0uELg1D2yyMxWuGNa1i9a2HnM0ZunsQLBu6kMSqCG8vP7PleXN2_tRjP3p7zzDtQoXBtPogzZQPtr018fDH27wkVaQbOoXvGERoH8agwZGAGvxIR3lJZxQsQ0Ae_rg"}
+                headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEyNzIxODI0NTMsIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMjc5MzgyLCJqdGkiOiIzZDFiOGM0Yi04NDA1LTQ3M2EtYTVjMS1jNTkwNDI5MWIzYzAifQ.f-XuyPabt2FbkjbYOphhdUWBx7X4BsfnhHmtVSqgZCbUaT6L5gM2lxqmZfZrETFvIFc76GuvpTlawMfe1tk6DWnwiSgUBHmQU5KXmcolbZ-Yd2Xg82biPxtzn-_h_PCf0hGQkwGxDDExIJ6IhpTS3y4gbHoHMq0t2LJ508aHgwH802XJ7Sxu6PvDN6Mq3a_L014ite0rzSIbrcIekiikkZtyFeVLVKgJMB1MPCQvPCDzL6XgrivDq8NTznNrkw-Igibd1JM6s4uFY8tPIjGAaGDGbYrKNqAAldyf7fu696s9NsleiwjyvCV21PhF1RmdW6-mjxC9l9QvvBuTPGhzAw"}
 
             }).done(function (msg) {
                 let state_awake = document.getElementById("alarm_test")
@@ -43,18 +44,25 @@
                 }
                 else if(msg.data[0].attributes["check"] === 1){
                     state_awake.childNodes[0].innerHTML = "완전히 일어났습니다. 좋은 아침이에요.";
-                    //state_awake.appendChild(`<img src="./img/capture.jpg">`);
-
+                    state_awake.appendChild(document.createElement("img"))
+                    var img = document.querySelector("img");
+                    //img.src = "";
+                    check_flag = 1;
+                    clearInterval(timeId);
                 }
                 else if(msg.data[0].attributes["dress"] === 1){
-                    //state_awake.childNodes[0].innerHTML = "완전히 일어났습니다. 좋은 아침이에요.";
+                    check_flag = 1;
                     location.href = "/cody";
                 }
                 else if(msg.data[0].attributes["out"] === 1){
-                    //state_awake.childNodes[0].innerHTML = "완전히 일어났습니다. 좋은 아침이에요.";
+                    check_flag = 1;
                     location.href = "/mask";
                 }
-                timeId = setInterval(printStatus(), 1000);
+
+                if(check_flag == 0){
+                    timeId = setInterval(printStatus(), 1000);
+                }
+                
             });
         }
 
