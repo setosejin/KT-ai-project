@@ -4,7 +4,7 @@
  
     function dress_info() {
         var img_src = './img/';
-        var num = document.cookie[62];
+        var num = document.cookie[62];// slicing 필요
         img_src += num;
         img_src += '.png';
         return img_src;
@@ -12,7 +12,7 @@
 </script>
 <html>
     <head>
-        
+        <link rel="icon" type="image/x-icon" href="./img/icon.ico" />
         <title>cloth</title>
         <meta charset="utf-8">
         <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
