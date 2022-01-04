@@ -66,7 +66,7 @@ def Alarm(alarm, que):
 	global wake_up
 
 	print("played alarm")
-	#alarm.play()
+	alarm.play()
 	os.system("./send_alarm_flag")
 	wake_up = mo.inference()
 	print(que)
@@ -75,7 +75,7 @@ def Alarm(alarm, que):
 def btn_detect(standard_time, second, que):
 	global btn_status
 
-	alarm = vlc.MediaPlayer("alarm.mp3")
+	alarm = vlc.MediaPlayer("show_alarm.mp3")
 	alarm_thread = threading.Thread(target=Alarm, args=(alarm, que))
 	trigger = True
 
@@ -87,7 +87,7 @@ def btn_detect(standard_time, second, que):
 			now = time.time()
 			# print(type(now))
 			# print(type(standard_time))
-			#print(second)
+			print(second)
 			if ((now - standard_time) > second) and (standard_time > 0) and trigger: 
 				alarm_thread.start()
 				trigger = False
