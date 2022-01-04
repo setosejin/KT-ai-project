@@ -1,5 +1,6 @@
 # %%
 import cv2
+import os
 import mediapipe as mp
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
@@ -54,7 +55,8 @@ def inference():
 
       if (y_dist_r_wrist_to_nose >= 30) and (y_dist_l_wrist_to_nose >= 30):
         print("detect guigeegae")
-        
+        os.system('./send_check_flag')
+        cv2.imwrite("/home/pi/Desktop/KT-ai-project/img/capture.jpg", image)
         cap.release()
         cv2.destroyAllWindows()
         return True

@@ -35,9 +35,10 @@ def find_time(result_mesg):
     return -1
 
 def main():
+    os.system('./send_start_flag')
+
     KWSID = ['기가지니', '지니야', '친구야', '자기야']
     alarm = vlc.MediaPlayer("show_alarm.mp3")
-    alarm_thread = threading.Thread(target=Alarm, args=(alarm,))
     standard_time = -1
     second = 0
     que = queue.Queue()

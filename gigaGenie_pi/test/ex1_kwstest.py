@@ -64,6 +64,7 @@ def detect():
 
 def Alarm(alarm, que):
 	global wake_up
+
 	print("played alarm")
 	alarm.play()
 	os.system("./send_alarm_flag")
@@ -86,7 +87,7 @@ def btn_detect(standard_time, second, que):
 			now = time.time()
 			# print(type(now))
 			# print(type(standard_time))
-			#print(second)
+			print(second)
 			if ((now - standard_time) > second) and (standard_time > 0) and trigger: 
 				alarm_thread.start()
 				trigger = False

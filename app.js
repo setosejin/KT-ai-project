@@ -88,9 +88,6 @@ PythonShell.run('./cloth_AI/cloth.py', options, function (err, results) {
   pythonDatac = results[6];
   //file에 저장할 내용
 
-  var cont = ".";
-  
-  saveFile(cont);
 
 });
 
