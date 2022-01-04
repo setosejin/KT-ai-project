@@ -4,7 +4,9 @@
  
     function dress_info() {
         var img_src = './img/';
-        var num = document.cookie[62];// slicing 필요
+        var umb = document.cookie;
+        //console.log(umb.indexOf("img"));
+        var num = document.cookie[umb.indexOf("img") + 4];// slicing 필요
         img_src += num;
         img_src += '.png';
         return img_src;
