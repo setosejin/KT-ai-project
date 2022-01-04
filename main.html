@@ -27,7 +27,7 @@
                 method: "GET",
                 url: "https://iotmakers.kt.com:443/api/v1/streams/ckdtjqD1640956149662/log/last",
                 data: { },
-                headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEyNzIxODI0NTMsIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMjc5MzgyLCJqdGkiOiIzZDFiOGM0Yi04NDA1LTQ3M2EtYTVjMS1jNTkwNDI5MWIzYzAifQ.f-XuyPabt2FbkjbYOphhdUWBx7X4BsfnhHmtVSqgZCbUaT6L5gM2lxqmZfZrETFvIFc76GuvpTlawMfe1tk6DWnwiSgUBHmQU5KXmcolbZ-Yd2Xg82biPxtzn-_h_PCf0hGQkwGxDDExIJ6IhpTS3y4gbHoHMq0t2LJ508aHgwH802XJ7Sxu6PvDN6Mq3a_L014ite0rzSIbrcIekiikkZtyFeVLVKgJMB1MPCQvPCDzL6XgrivDq8NTznNrkw-Igibd1JM6s4uFY8tPIjGAaGDGbYrKNqAAldyf7fu696s9NsleiwjyvCV21PhF1RmdW6-mjxC9l9QvvBuTPGhzAw"}
+                headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEyNzM3MTMwNDAsIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMjgwOTEzLCJqdGkiOiIyYmQ1OGEyZC1lYWZiLTRiZDEtOGI3My1lMWY3YTAzMzdhN2IifQ.NIZLt6484seTTXfOEebQtsp1a0FVO7hlxWTor324fzc8UHnCzWl9GaLksydEEkIeNQN0JahTnSXE1odxR8BJumZmjkjhjcc5pCam_naDIaj3LVNFcFPIHrL8cfYvzPy6VHZMlS1QX_ZwYUYe8LDzgxlQ1VoICbFac1LOlQAJ55zJMCoSdxroOJ0Yqxt3MTVwGTCAz9OngE-IzEme_hp04Gd36wXVPJbKrrv1vHcdodriNEPS6FXIuYGBwhv7naRLZbh2chiE2_zLFsTXKepf7nTugOkIwXMM_0nZvIDAVjs2XskftDEmyYVjNEWrT67sfaFO9Acl-ofsf6wQi_wcTA"}
 
             }).done(function (msg) {
                 let state_awake = document.getElementById("alarm_test")
@@ -44,19 +44,21 @@
                 }
                 else if(msg.data[0].attributes["check"] === 1){
                     state_awake.childNodes[0].innerHTML = "완전히 일어났습니다. 좋은 아침이에요.";
-                    state_awake.appendChild(document.createElement("img"))
-                    var img = document.querySelector("img");
-                    //img.src = "";
+
+                    let pic_awake = document.getElementById("pic");
+                    pic_awake.appendChild(document.createElement("img"));
+                    var img = pic_awake.querySelector("img");
+                    img.src = "./img/capture.jpg";
                     check_flag = 1;
                     clearInterval(timeId);
                 }
                 else if(msg.data[0].attributes["dress"] === 1){
                     check_flag = 1;
-                    location.href = "/cody";
+                    window.location.href = "/cody";
                 }
                 else if(msg.data[0].attributes["out"] === 1){
                     check_flag = 1;
-                    location.href = "/mask";
+                    window.location.href = "/mask";
                 }
 
                 if(check_flag == 0){
@@ -147,6 +149,8 @@
         <br><br>
 
         <div id ="alarm_test"></div>
+
+        <div id="pic"></div>
 
     </center>
 

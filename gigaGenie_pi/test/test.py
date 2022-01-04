@@ -38,7 +38,7 @@ def main():
     os.system('./send_start_flag')
 
     KWSID = ['기가지니', '지니야', '친구야', '자기야']
-    alarm = vlc.MediaPlayer("show_alarm.mp3")
+    #alarm = vlc.MediaPlayer("alarm.mp3")
     standard_time = -1
     second = 0
     que = queue.Queue()
@@ -59,6 +59,12 @@ def main():
                 second.reverse()
                 second = int(''.join(second))
                 print(second)
+            elif ('옷' in result_mesg) :
+                os.system("./send_dress_flag")
+                print("recommand cody")
+            elif ('외출' in result_mesg) :
+                os.system("./send_out_flag")
+                print("out")
                 
         # 버튼 누르는 이벤트 100
         elif recog == 100:
