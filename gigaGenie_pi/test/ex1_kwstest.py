@@ -19,7 +19,7 @@ sys.path.append("../../motion/")
 import main_openpose as mo
 import subprocess
 
-VOLUME = 100
+VOLUME = 70
 KWSID = ['기가지니', '지니야', '친구야', '자기야']
 RATE = 16000
 CHUNK = 512
@@ -77,7 +77,7 @@ def Alarm(alarm, que):
 		if 'fail' not in data.decode()  : break
 		if alarm_cnt > 10 : break
 	
-	if mo.inference():
+	if mo.inference(que):
 		alarm.stop()
 		return
 

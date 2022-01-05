@@ -16,7 +16,7 @@ import queue
 import subprocess
 
 
-VOLUME = 100
+VOLUME = 70
 
 def find_time(result_mesg):
     res = []
@@ -49,9 +49,11 @@ def main():
     KWSID = ['기가지니', '지니야', '친구야', '자기야']
     standard_time = -1
     second = 0
+    
     que = queue.Queue()
 
     while True:
+
         recog, alarm = kws.btn_test(standard_time, second, que, KWSID[0])
 
         # 기가지니 호출 200
@@ -60,8 +62,10 @@ def main():
             result_mesg = gv2t.getVoice2Text() #getVoice2Text_alarm()
             print(result_mesg)
 
-            if ('알람' in result_mesg) and ( find_time(result_mesg) != -1):
+            if ('알람' in result_mesg) and ( find_time(result_mesg) != -1) and ('초' in result_mesg) :
                 standard_time = time.time()
+                set_alarm = vlc.MediaPlayer("set_alarm.mp3")
+                set_alarm.play()
                 print("알람을 찾았어요.")
                 send_flag('start')
 
@@ -71,10 +75,14 @@ def main():
                 print(second)
 
             elif ('코디' in result_mesg) :
+                cloth = vlc.MediaPlayer("cloth.mp3")
+                cloth.play()
                 print("날씨에 따른 옷차림을 추천합니다.")
                 send_flag('dress')
             
             elif ('외출' in result_mesg) :
+                out = vlc.MediaPlayer("out.mp3")
+                out.play()
                 print("외출 전 마스크 및 우산 체크합니다.")
                 send_flag('out')
 
@@ -84,6 +92,7 @@ def main():
             print('알람을 끕니다 스누즈 모드입니다.')
             alarm.stop()
             #alarm.stop()
+            que.put(1)
 
             standard_time = time.time()
             second = 5

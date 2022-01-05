@@ -9,7 +9,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
 
-def inference():
+def inference(que):
   # For webcam input:
   cap = cv2.VideoCapture(0)
   y_dist_r_wrist_to_nose, y_dist_l_wrist_to_nose = 0, 0
@@ -17,7 +17,12 @@ def inference():
       min_detection_confidence=0.5,
       min_tracking_confidence=0.5) as pose:
     while cap.isOpened():
-      #if que.empty()
+      if not(que.empty()) :
+        que.get()
+        break
+
+
+
       success, image = cap.read()
       if not success:
         print("Ignoring empty camera frame.")
@@ -79,7 +84,9 @@ def inference():
       #     cv2.waitKey(2000)
       #     # 프로그램 종료
       #     break
-
+    cap.release()
+    cv2.destroyAllWindows()
+    return True
 
   cap.release()
   cv2.destroyAllWindows()
