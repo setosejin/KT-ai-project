@@ -27,7 +27,7 @@
                 method: "GET",
                 url: "https://iotmakers.kt.com:443/api/v1/streams/ckdtjqD1640956149662/log/last",
                 data: { },
-                headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEyNzM3MTMwNDAsIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMjgwOTEzLCJqdGkiOiIyYmQ1OGEyZC1lYWZiLTRiZDEtOGI3My1lMWY3YTAzMzdhN2IifQ.NIZLt6484seTTXfOEebQtsp1a0FVO7hlxWTor324fzc8UHnCzWl9GaLksydEEkIeNQN0JahTnSXE1odxR8BJumZmjkjhjcc5pCam_naDIaj3LVNFcFPIHrL8cfYvzPy6VHZMlS1QX_ZwYUYe8LDzgxlQ1VoICbFac1LOlQAJ55zJMCoSdxroOJ0Yqxt3MTVwGTCAz9OngE-IzEme_hp04Gd36wXVPJbKrrv1vHcdodriNEPS6FXIuYGBwhv7naRLZbh2chiE2_zLFsTXKepf7nTugOkIwXMM_0nZvIDAVjs2XskftDEmyYVjNEWrT67sfaFO9Acl-ofsf6wQi_wcTA"}
+                headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEzNTAzNDc0NjEsIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMzU3NTQ3LCJqdGkiOiI2OTc0NTUyZS0yOTQwLTRjZjAtOWQ4OS05NmI3NWJkMmE4NzgifQ.C0Ymrw71a_DaZ02_0GMs7Q0b-ve9JcC_0tYP9l_sqqRU6v6w05jjjgaQHf_vZpK-K-qAlwHJpr6OPhVql0OWv6bF1wxCZdeH-GFZx8sj5CGTZIeYd0331wbGPuQWfzK7Py95mgNQxc1-hLk2AVrnq3ZuRNpQfxmIIAOu51wApIipSri7J31BhWHnkbEnVLr1fKVmPdp0RaSXkOSHsqxE2bhNCNNB6YuZ37lUT3455bf6yAQtYgjeExLq-tS64ZisTuwF6Lsl_k66E_FZGIjaFT2EUqfqegwuYFABZKiskHWfFknBB6IQyH0M4et0rma7N3VwdcIA5k8cBdi7fqv-1Q"}
 
             }).done(function (msg) {
                 let state_awake = document.getElementById("alarm_test")
@@ -49,7 +49,7 @@
                     pic_awake.appendChild(document.createElement("img"));
                     var img = pic_awake.querySelector("img");
                     img.src = "./img/capture.jpg";
-                    check_flag = 1;
+                    //check_flag = 1;
                     clearInterval(timeId);
                 }
                 else if(msg.data[0].attributes["dress"] === 1){

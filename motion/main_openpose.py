@@ -48,13 +48,13 @@ def inference():
           y_dist_l_wrist_to_nose = (nose[1] - l_wrist[1])
       
       # Flip the image horizontally for a selfie-view display.
-      cv2.moveWindow('Pose', 40, 30)
+      cv2.moveWindow('Pose', 630, 330)
       cv2.imshow('Pose', image)#cv2.flip(image, 1))
 
       if cv2.waitKey(1) == ord('q'):
           break
 
-      if (y_dist_r_wrist_to_nose >= 25) and (y_dist_l_wrist_to_nose >= 25):
+      if (y_dist_r_wrist_to_nose >= 20) and (y_dist_l_wrist_to_nose >= 20):
         print("detect guigeegae")
         os.system('./send_check_flag')
         cv2.imwrite("/home/pi/Desktop/KT-ai-project/img/capture.jpg", image)

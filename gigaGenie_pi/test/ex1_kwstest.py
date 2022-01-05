@@ -48,6 +48,7 @@ asound.snd_lib_error_set_handler(c_error_handler)
 
 def detect():
 	response = vlc.MediaPlayer("response.mp3")
+	response.audio_set_volume(100)
 	with MS.MicrophoneStream(RATE, CHUNK) as stream:
 		audio_generator = stream.generator()
 
@@ -58,7 +59,7 @@ def detect():
 			#print('audio rms = %d' % (rms))
 
 			if (rc == 1):
-				response.play()
+				#response.play()
 				#MS.play_file("../data/sample_sound.wav")
 				return 200
 
@@ -66,22 +67,23 @@ def Alarm(alarm, que):
 	global wake_up
 
 	print("played alarm")
-	alarm.play()
+	#alarm.play()
 	os.system("./send_alarm_flag")
 	if mo.inference():
 		alarm.stop()
 		return
-	print(que)
-	
+
 
 def btn_detect(standard_time, second, que):
 	global btn_status
 
 	alarm = vlc.MediaPlayer("long_alarm.mp3")
+	alarm.audio_set_volume(100)
 	alarm_thread = threading.Thread(target=Alarm, args=(alarm, que))
 	trigger = True
 
 	response = vlc.MediaPlayer("response.mp3")
+	response.audio_set_volume(100)
 	with MS.MicrophoneStream(RATE, CHUNK) as stream:
 		audio_generator = stream.generator()
 
@@ -93,6 +95,7 @@ def btn_detect(standard_time, second, que):
 			if ((now - standard_time) > second) and (standard_time > 0) and trigger: 
 				alarm_thread.start()
 				trigger = False
+				return 300, alarm
 			GPIO.output(31, GPIO.HIGH)
 			rc = ktkws.detect(content)
 
@@ -104,7 +107,7 @@ def btn_detect(standard_time, second, que):
 				btn_status = False			
 			if (rc == 1):
 				GPIO.output(31, GPIO.HIGH)
-				response.play()
+				#response.play()
 				#MS.play_file("../data/sample_sound.wav")
 				return 200, alarm
 			elif (rc == 2):

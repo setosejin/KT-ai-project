@@ -69,7 +69,7 @@ def getVoice2Text_alarm():
     stub = gigagenieRPC_pb2_grpc.GigagenieStub(channel)
     request = generate_request()
     resultText = ''
-    for response in stub.getVoice2Text(request):
+    for response in stub.getVoice2Text_alarm(request):
         if response.resultCd == 200: # partial
             print('resultCd=%d | recognizedText= %s' 
                   % (response.resultCd, response.recognizedText))
