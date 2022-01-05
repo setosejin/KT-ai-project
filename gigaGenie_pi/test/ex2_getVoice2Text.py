@@ -13,6 +13,7 @@ import user_auth as UA
 import audioop
 import os
 from ctypes import *
+import time
 
 HOST = 'gate.gigagenie.ai'
 PORT = 4080
@@ -29,17 +30,23 @@ asound.snd_lib_error_set_handler(c_error_handler)
 def generate_request():
     with MS.MicrophoneStream(RATE, CHUNK) as stream:
         audio_generator = stream.generator()
-    
+
+        start = time.time()
         for content in audio_generator:
+            end = time.time()
             message = gigagenieRPC_pb2.reqVoice()
             message.audioContent = content
             yield message
             
+            if (end - start) > 5 :
+                print("탈출")
+                break
             rms = audioop.rms(content,2)
-            #print_rms(rms)
+            
+            #print(rms)
 
 def getVoice2Text():	
-    print ("\n\n음성인식을 시작합니다.\n\n종료하시려면 Ctrl+\ 키를 누루세요.\n\n\n")
+    print ("\n\n음성인식을 시작합니다.\n\n종료하시려면 Ctrl+\ 키를 누르세요.\n\n\n")
     channel = grpc.secure_channel('{}:{}'.format(HOST, PORT), UA.getCredentials())
     stub = gigagenieRPC_pb2_grpc.GigagenieStub(channel)
     request = generate_request()

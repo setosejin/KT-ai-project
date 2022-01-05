@@ -2,6 +2,8 @@
 import cv2
 import os
 import mediapipe as mp
+import queue
+
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
@@ -15,6 +17,7 @@ def inference():
       min_detection_confidence=0.5,
       min_tracking_confidence=0.5) as pose:
     while cap.isOpened():
+      #if que.empty()
       success, image = cap.read()
       if not success:
         print("Ignoring empty camera frame.")
