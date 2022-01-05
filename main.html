@@ -19,7 +19,7 @@
         }
 
         var timeId = null;
-        var check_flag = 0;
+        var check_flag = 0, new_flag = 1;
         timeId = setInterval(printStatus(), 1000);
         
         function printStatus(){
@@ -27,7 +27,7 @@
                 method: "GET",
                 url: "https://iotmakers.kt.com:443/api/v1/streams/ckdtjqD1640956149662/log/last",
                 data: { },
-                headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEzNTAzNDc0NjEsIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMzU3NTQ3LCJqdGkiOiI2OTc0NTUyZS0yOTQwLTRjZjAtOWQ4OS05NmI3NWJkMmE4NzgifQ.C0Ymrw71a_DaZ02_0GMs7Q0b-ve9JcC_0tYP9l_sqqRU6v6w05jjjgaQHf_vZpK-K-qAlwHJpr6OPhVql0OWv6bF1wxCZdeH-GFZx8sj5CGTZIeYd0331wbGPuQWfzK7Py95mgNQxc1-hLk2AVrnq3ZuRNpQfxmIIAOu51wApIipSri7J31BhWHnkbEnVLr1fKVmPdp0RaSXkOSHsqxE2bhNCNNB6YuZ37lUT3455bf6yAQtYgjeExLq-tS64ZisTuwF6Lsl_k66E_FZGIjaFT2EUqfqegwuYFABZKiskHWfFknBB6IQyH0M4et0rma7N3VwdcIA5k8cBdi7fqv-1Q"}
+                headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEzNTgzNDY1NDYsIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMzY1NTQ2LCJqdGkiOiJmNjIwMDdkNS1iNWZhLTQxMGQtOTdjNi03YjE4OTkxMmZhNmEifQ.SmKLVqg-jzfUAPh9oqq-7mEM2YRncmC9arC_xgxYSU-eyUunSqbs6HVCM4AWclJ4xVjwmys53NztkFrJyBda3B5H8lIPVESEbvrnAhF8nbXALI6T3nwVDSX-eLj11SJnBAcWJLWk1c07kR01qixPIMpYFIAmuQhJzjXrjfLOiTr9k3edHpL6k0lhvyIcX2rqZrcPVx3BqRpK9W0pojYH8hadEdOFUdwk0wc-LwWQyRJtzv89ETHQEe1v3moIqMTd87EaeMVRPqGk7OtZW-eWzO25aeAa4W7Ci4eLLzfeSYQ_kEjJMCUVB4tjScyQzLAOKiW9hBVXMmY7IUcpJhHZfQ"}
 
             }).done(function (msg) {
                 let state_awake = document.getElementById("alarm_test")
@@ -38,25 +38,38 @@
                 }
                 else if(msg.data[0].attributes["alarm"] === 1){
                     state_awake.childNodes[0].innerHTML = "ALARM이 울리고 있습니다.";
+                    new_flag = 0;
                 }
                 else if(msg.data[0].attributes["button"] === 1){
                     state_awake.childNodes[0].innerHTML = "버튼이 눌려 SNOOZE 되었습니다.";
                 }
                 else if(msg.data[0].attributes["check"] === 1){
                     state_awake.childNodes[0].innerHTML = "완전히 일어났습니다. 좋은 아침이에요.";
-
                     let pic_awake = document.getElementById("pic");
-                    pic_awake.appendChild(document.createElement("img"));
-                    var img = pic_awake.querySelector("img");
-                    img.src = "./img/capture.jpg";
-                    //check_flag = 1;
-                    clearInterval(timeId);
+                    pic_awake.innerHTML = "";
+
+                    //새로고침
+                    if(new_flag === 0){
+                        location.reload();
+                        new_flag = 1;
+                        pic_awake.appendChild(document.createElement("img"));
+                        var img = pic_awake.querySelector("img");
+                        img.src = "./img/capture.jpg";
+                        clearInterval(timeId);
+                    }
+                    else{
+                        pic_awake.appendChild(document.createElement("img"));
+                        var img = pic_awake.querySelector("img");
+                        img.src = "./img/capture.jpg";
+                    }
                 }
                 else if(msg.data[0].attributes["dress"] === 1){
+                    clearInterval(timeId);
                     check_flag = 1;
                     window.location.href = "/cody";
                 }
                 else if(msg.data[0].attributes["out"] === 1){
+                    clearInterval(timeId);
                     check_flag = 1;
                     window.location.href = "/mask";
                 }
