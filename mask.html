@@ -99,6 +99,9 @@
                     if(msg.data[0].attributes["start"] === 0){
                         movepage1();
                     }
+                    else if(msg.data[0].attributes["dress"] === 1){
+                        movepage2();
+                    }
                     
                     timeId = setInterval(printStatus(), 1000);
                 });
