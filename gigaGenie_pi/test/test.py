@@ -13,11 +13,10 @@ import vlc
 import multiprocessing
 import threading
 import queue
+import subprocess
 
-# def Alarm(alarm):
-#     #time.sleep(second)
-#     alarm.play()
-#     print("played alarm")
+
+VOLUME = 100
 
 def find_time(result_mesg):
     res = []
@@ -34,11 +33,20 @@ def find_time(result_mesg):
                 res.append(result_mesg[location])
     return -1
 
+def send_flag(flag):
+    cnt = 0
+    st = './send_' + str(flag) + '_flag'
+    while True:
+        cnt += 1
+        data = subprocess.check_output([st])
+        if 'fail' not in data.decode() : break
+        if cnt > 10 : break
+
 def main():
-    os.system('./send_start_flag')
+    #os.system('./send_start_flag')
+    send_flag('start')
 
     KWSID = ['기가지니', '지니야', '친구야', '자기야']
-    #alarm = vlc.MediaPlayer("alarm.mp3")
     standard_time = -1
     second = 0
     que = queue.Queue()
@@ -49,37 +57,45 @@ def main():
         # 기가지니 호출 200
         if recog == 200:
             print("기가지니 호출됨")
-            result_mesg = gv2t.getVoice2Text()#getVoice2Text_alarm()
+            result_mesg = gv2t.getVoice2Text() #getVoice2Text_alarm()
             print(result_mesg)
 
             if ('알람' in result_mesg) and ( find_time(result_mesg) != -1):
                 standard_time = time.time()
                 print("알람을 찾았어요.")
+                send_flag('start')
+
                 second = find_time(result_mesg)
                 second.reverse()
                 second = int(''.join(second))
                 print(second)
+
             elif ('코디' in result_mesg) :
-                os.system("./send_dress_flag")
-                print("recommand cody")
+                print("날씨에 따른 옷차림을 추천합니다.")
+                send_flag('dress')
+            
             elif ('외출' in result_mesg) :
-                os.system("./send_out_flag")
-                print("out")
+                print("외출 전 마스크 및 우산 체크합니다.")
+                send_flag('out')
+
                 
         # 버튼 누르는 이벤트 100
         elif recog == 100:
             print('알람을 끕니다 스누즈 모드입니다.')
             alarm.stop()
+            #alarm.stop()
 
             standard_time = time.time()
-            second = 10
+            second = 5
             alarm_off = vlc.MediaPlayer("alarm_off.mp3")
-            alarm_off.audio_set_volume(100)
-            #alarm_off.play()
-            os.system('./send_button_flag')
+            alarm_off.audio_set_volume(VOLUME)
+            alarm_off.play()
 
+            send_flag('button')
+
+        # 알람 울리는 이벤트 300
         elif recog == 300:
-            print("alarm off")
+            print("알람 울리는 이벤트@@@@@@@@@@@@@2")
             standard_time = -1
             second = 0
             
