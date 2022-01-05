@@ -2,6 +2,7 @@
 <html lang="ko">
 
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="./img/icon.ico" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +35,7 @@
                 state_awake.appendChild(document.createElement("p"))
                 console.log(msg.data[0].attributes) //iotMakters alarm 마지막 로그 가지고 와서 출력함
                 if(msg.data[0].attributes["start"] === 0){
-                    state_awake.childNodes[0].innerHTML = "기가지니 실행";
+                    state_awake.childNodes[0].innerHTML = "ALARM을 생성했습니다.";
                 }
                 else if(msg.data[0].attributes["alarm"] === 1){
                     state_awake.childNodes[0].innerHTML = "ALARM이 울리고 있습니다.";
@@ -118,7 +119,7 @@
             background-color : lightcyan;
         } 
         h1{
-            font-family: 'Nanum Myeongjo', serif;
+            font-family: 'Jua', sans-serif;
         }
 
         p{

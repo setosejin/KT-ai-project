@@ -1,22 +1,5 @@
-
 <!doctype HTML>
-<script language="javascript">
- 
-    function dress_info() {
-        var img_src = './img/';
-        var umb = document.cookie;
-        //console.log(umb.indexOf("img"));
-        var num = document.cookie[umb.indexOf("img") + 4];// slicing 필요
 
-
-        // if(num === 9){
-
-        // }
-        img_src += num;
-        img_src += '.png';
-        return img_src;
-    }
-</script>
 <html>
     <head>
         <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -24,6 +7,10 @@
         <title>cloth</title>
         <meta charset="utf-8">
         <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+        </script>
+        
         <style>
             ul {
                 background-color: paleturquoise;
@@ -82,7 +69,7 @@
         </style>
     </head>
     <body>
-
+        
         <h1><img src='./img/InnaSHOW_logo.png' alt="인나쇼" width="350" height="60"/></h1>
         <ul>
             <li><a onclick="movepage1()">
@@ -103,6 +90,42 @@
         </ul>
         <script type="text/javascript">
 
+ 
+            function dress_info() {
+                var img_src = './img/';
+                var umb = document.cookie;
+                var num = document.cookie[umb.indexOf("img") + 4];
+
+                img_src += num;
+                img_src += '.png';
+                return img_src;
+            }
+
+            function sleep(ms){
+                const wakeUpTime = Date.now() + ms;
+                while (Date.now() < wakeUpTime) {}
+            }
+
+            var timeId = null;
+            var check_flag = 0, new_flag = 1;
+            timeId = setInterval(printStatus(), 1000);
+            
+            function printStatus(){
+                $.ajax({
+                    method: "GET",
+                    url: "https://iotmakers.kt.com:443/api/v1/streams/ckdtjqD1640956149662/log/last",
+                    data: { },
+                    headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEzNTgzNDY1NDYsIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMzY1NTQ2LCJqdGkiOiJmNjIwMDdkNS1iNWZhLTQxMGQtOTdjNi03YjE4OTkxMmZhNmEifQ.SmKLVqg-jzfUAPh9oqq-7mEM2YRncmC9arC_xgxYSU-eyUunSqbs6HVCM4AWclJ4xVjwmys53NztkFrJyBda3B5H8lIPVESEbvrnAhF8nbXALI6T3nwVDSX-eLj11SJnBAcWJLWk1c07kR01qixPIMpYFIAmuQhJzjXrjfLOiTr9k3edHpL6k0lhvyIcX2rqZrcPVx3BqRpK9W0pojYH8hadEdOFUdwk0wc-LwWQyRJtzv89ETHQEe1v3moIqMTd87EaeMVRPqGk7OtZW-eWzO25aeAa4W7Ci4eLLzfeSYQ_kEjJMCUVB4tjScyQzLAOKiW9hBVXMmY7IUcpJhHZfQ"}
+
+                }).done(function (msg) {
+                    console.log(msg.data[0].attributes)
+                    if(msg.data[0].attributes["start"] === 0){
+                        movepage1();
+                    }
+                    
+                    timeId = setInterval(printStatus(), 1000);
+                });
+            }
             function movepage1(){
                 location.href = "/main"
             }
