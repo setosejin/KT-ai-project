@@ -2,11 +2,16 @@
 
 <html>
     <head>
+        <!-- 구글 폰트를 사용하기 위한 링크 -->
         <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+        
+        <!-- 아이콘 사용을 위한 링크 -->
         <link rel="icon" type="image/x-icon" href="./img/icon.ico" />
         <title>cloth</title>
         <meta charset="utf-8">
-        <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+        
+        <!-- iotmakers API 사용을 위한 스크립트 -->
         <script src="https://code.jquery.com/jquery-3.4.1.js"
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
         </script>
@@ -53,11 +58,6 @@
                 text-align:center;
             }
             
-            /* img{
-                position : absolute;
-                left : 520px;
-                top : 120px;
-            } */
             .dress{
                 width:300px;
             }
@@ -70,8 +70,10 @@
         </style>
     </head>
     <body>
-        
+        <!-- 인나쇼 로고 -->
         <h1><img src='./img/InnaSHOW_logo.png' alt="인나쇼" width="350" height="60"/></h1>
+        
+        <!-- navigation bar -->
         <ul>
             <li><a onclick="movepage1()">
                 <img src='./img/main_logo_off.png' alt="Main" width="180" height="60" 
@@ -91,7 +93,10 @@
         </ul>
         <script type="text/javascript">
             
+            //오늘 날씨에 맞는 코디 추천을 해주는 함수.
             function dress_info() {
+
+                //쿠키에 저장된 오늘 추천 아이템을 가져온다.
                 var img_src = './img/';
                 var umb = document.cookie;
                 var num = document.cookie[umb.indexOf("img") + 4];
@@ -100,15 +105,16 @@
                 var month = today.getMonth() +1;
                 img_src += num;
 
+                //만약 일교차가 크다면 다음 조건문 실행.
                 if(num == 9){
-                    if(month == 12 || month == 1 || month == 2){
+                    if(month == 12 || month == 1 || month == 2){//겨울
                         img_src += '-win'
                     } 
-                    else if(month == 6 || month == 7 || month == 8){
+                    else if(month == 6 || month == 7 || month == 8){//여름
                         img_src += '-sum'
                     }
                     else {
-                        img_src += ''
+                        img_src += ''//봄가을
                     }
                 }
 
@@ -136,14 +142,17 @@
                 }).done(function (msg) {
                     
                     console.log(msg.data[0].attributes)
+
+                    // 기가지니가 재구동됐거나, 재알람 기능을 사용하면 main 페이지로 이동.
                     if(msg.data[0].attributes["start"] === 0){
                         movepage1();
                     }
+
+                    // 마지막 점검 기능을 사용하면 mask 페이지로 이동.
                     else if(msg.data[0].attributes["out"] === 1){
                         movepage3();
                     }
 
-                    
                     timeId = setInterval(printStatus(), 1000);
                 });
             }
@@ -158,7 +167,11 @@
             }
         </script>
         <br><br>
-        <div id="weather" style="font-family: 'Jua', sans-serif; font-size: 20pt;"></div>
+        
+        <center>
+            <div id="weather" style="font-family: 'Jua', sans-serif; font-size: 20pt;"></div>
+        </center>
+        <!-- 현재 날씨를 코디추천과 함께 표시해주는 스크립트 -->
         <script language="javascript">
             var temp = document.cookie;
             var split = [];
