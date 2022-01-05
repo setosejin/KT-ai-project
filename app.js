@@ -1,3 +1,4 @@
+//실행 방법 : node app.js
 // node_modules 에 있는 express 관련 파일을 가져온다.
 var express = require('express')
 
