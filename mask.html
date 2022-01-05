@@ -46,7 +46,7 @@
             }
             p{
                 font-family: 'Jua', sans-serif;
-                font-size : 30;
+                font-size : 40;
             }
             .umbrella{
                 font-family: 'Jua', sans-serif;
@@ -143,12 +143,6 @@
         let maskContainer = document.getElementById("mask-check");
         maskContainer.appendChild(document.createElement("p"));
         
-        // for (let i = 0; i < maxPredictions; i++) {
-        //     const classPrediction =
-        //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-        //     labelContainer.childNodes[i].innerHTML = classPrediction;
-            
-        // }
         if( prediction[0].probability >= 0.8){
             maskContainer.childNodes[0].innerHTML = "마스크 정상착용!";
         }
@@ -168,12 +162,12 @@
         var umb = document.cookie;
         
         
-        if(umb.indexOf("1004") >= 0){
-            document.getElementById("umbrella").innerText = "우산을 챙겨주세요!"
-        }
-        else{
-            document.getElementById("umbrella").innerText = "날씨가 맑아요! 좋은 하루 되세요!"
-        }
+        //if(umb.indexOf("1004") >= 0){
+            document.getElementById("umbrella").innerText = "비가 올 확률이 높아요. 우산을 챙겨주세요!"
+        //}
+        //else{
+        //    document.getElementById("umbrella").innerText = "날씨가 맑아요! 좋은 하루 되세요!"
+        //}
     </script>
 </body>
 </html>
