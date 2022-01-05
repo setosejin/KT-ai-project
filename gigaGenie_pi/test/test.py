@@ -49,7 +49,7 @@ def main():
         # 기가지니 호출 200
         if recog == 200:
             print("기가지니 호출됨")
-            result_mesg = gv2t.getVoice2Text_alarm()
+            result_mesg = gv2t.getVoice2Text()#getVoice2Text_alarm()
             print(result_mesg)
 
             if ('알람' in result_mesg) and ( find_time(result_mesg) != -1):
@@ -59,7 +59,7 @@ def main():
                 second.reverse()
                 second = int(''.join(second))
                 print(second)
-            elif ('옷' in result_mesg) :
+            elif ('코디' in result_mesg) :
                 os.system("./send_dress_flag")
                 print("recommand cody")
             elif ('외출' in result_mesg) :
@@ -74,9 +74,15 @@ def main():
             standard_time = time.time()
             second = 10
             alarm_off = vlc.MediaPlayer("alarm_off.mp3")
-            alarm_off.play()
+            alarm_off.audio_set_volume(100)
+            #alarm_off.play()
             os.system('./send_button_flag')
 
+        elif recog == 300:
+            print("alarm off")
+            standard_time = -1
+            second = 0
+            
 if __name__ == '__main__':
     main()
 

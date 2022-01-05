@@ -7,6 +7,11 @@
         var umb = document.cookie;
         //console.log(umb.indexOf("img"));
         var num = document.cookie[umb.indexOf("img") + 4];// slicing 필요
+
+
+        // if(num === 9){
+
+        // }
         img_src += num;
         img_src += '.png';
         return img_src;
@@ -14,6 +19,7 @@
 </script>
 <html>
     <head>
+        <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="./img/icon.ico" />
         <title>cloth</title>
         <meta charset="utf-8">
@@ -69,6 +75,10 @@
                 width:300px;
             }
 
+            .weather{
+                font-size: 30;
+            }
+
         </style>
     </head>
     <body>
@@ -110,17 +120,11 @@
             <img id="dress" src="">
             <script>document.getElementById('dress').src=dress_info()</script>
         </div>
-        <!--     <% if (cloth === 1) { %> <img src = '1패딩.png', width="500" height="500"/> <% } %>
-            <% elif (cloth === 2) { %> <img src = '2코트.png', width="500" height="500"/> <% } %>
-            <% else if (cloth === 3) { %> <img src = '3가죽자켓.png', width="500" height="500"/> <% } %>
-            <% else if (cloth === 4) { %> <img src = '4니트.png', width="500" height="500"/> <% } %>
-            <% else if (cloth === 5) { %> <img src = '5후드티.png', width="500" height="500"/> <% } %>
-            <% else if (cloth === 6) { %> <img src = '6긴팔.png', width="500" height="500"/> <% } %>
-            <% else if (cloth === 7) { %> <img src = '7반팔.png', width="500" height="500"/> <%  %>
-            <% else if (cloth === 8) { %> <img src = '8통기성.png', width="500" height="500"/> <% } %>
-            <% else if (cloth === 9 ) { %> <img src = '9가디건.png', width="500" height="500"/> <% } %> -->
+        
+        <center>
+            <div id="weather" style="width:520px; height:600px; font-family: 'Jua', sans-serif; font-size: 30pt;">오늘의 날씨는 : -1.0도입니다.<br>따뜻한 외투를 챙겨주세요 :)</div>
 
-        <div style=width:520px; height:600px; >오늘의 날씨는 :</div>
+        </center>
 
     </body>
 </html>
