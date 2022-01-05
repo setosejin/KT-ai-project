@@ -69,7 +69,7 @@ min_TMP = min(tmp_data)
 range_TMP = round(max_TMP-min_TMP,2)
 max_WSD = max(wsd_data)
 range_REH = round(numpy.mean(reh_data),2)
-
+this_tmp = tmp_data[0]
 
 #저장된 학습모델 불러오기
 with open("./cloth_AI/saved_model.pkl", 'rb') as f:
@@ -93,3 +93,5 @@ else:
 
 print(model_pred[0])
 
+
+print(str(this_tmp)) #현재온도

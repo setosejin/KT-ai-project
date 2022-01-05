@@ -19,6 +19,7 @@ let pythonDataw = "py";
 let pythonDatah = "py";
 let pythonDatau = "py";
 let pythonDatac = "py";
+let pythonDatat = "py";
 
 app.get('/main', (req, res) => {
     //console.log(pythonData);
@@ -30,6 +31,8 @@ app.get('/main', (req, res) => {
     res.cookie('hum', pythonDatah, 1);
     res.cookie('umb', pythonDatau, 1);
     res.cookie('img', pythonDatac, 1);
+    res.cookie('now', pythonDatat, 1);
+
     //console.log(req.cookies);
     setCookie("expend", "true");
     res.sendFile(__dirname + '/main.html')
@@ -37,6 +40,7 @@ app.get('/main', (req, res) => {
 
 app.get('/cody', (req, res) =>{
     res.sendFile(__dirname + '/cody.html')
+
 })
 
 app.get('/mask', (req, res) =>{
@@ -78,6 +82,8 @@ PythonShell.run('./cloth_AI/cloth.py', options, function (err, results) {
   console.log('humidity:: '+ results[4]);
   console.log('Umbrella:: '+ results[5]);
   console.log('image:: '+ results[6]);
+  console.log('now_ondo:: ' + results[7])
+
 
   pythonDataM = results[0];
   pythonDatam = results[1];
@@ -86,6 +92,8 @@ PythonShell.run('./cloth_AI/cloth.py', options, function (err, results) {
   pythonDatah = results[4];
   pythonDatau = results[5];
   pythonDatac = results[6];
+  pythonDatat = results[7];
+
   //file에 저장할 내용
 
 
