@@ -1,22 +1,5 @@
-
 <!doctype HTML>
-<script language="javascript">
- 
-    function dress_info() {
-        var img_src = './img/';
-        var umb = document.cookie;
-        //console.log(umb.indexOf("img"));
-        var num = document.cookie[umb.indexOf("img") + 4];// slicing 필요
 
-
-        // if(num === 9){
-
-        // }
-        img_src += num;
-        img_src += '.png';
-        return img_src;
-    }
-</script>
 <html>
     <head>
         <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -24,6 +7,10 @@
         <title>cloth</title>
         <meta charset="utf-8">
         <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+        </script>
+        
         <style>
             ul {
                 background-color: paleturquoise;
@@ -76,13 +63,14 @@
             }
 
             .weather{
-                font-size: 30;
+                font-family: 'Jua', sans-serif;
+                font-size: 20pt;
             }
 
         </style>
     </head>
     <body>
-
+        
         <h1><img src='./img/InnaSHOW_logo.png' alt="인나쇼" width="350" height="60"/></h1>
         <ul>
             <li><a onclick="movepage1()">
@@ -103,9 +91,56 @@
         </ul>
         <script type="text/javascript">
             
-            var timeoutID;
-            timeoutID = setTimeout(movepage1, 10000);
+            function dress_info() {
+                var img_src = './img/';
+                var umb = document.cookie;
+                var num = document.cookie[umb.indexOf("img") + 4];
 
+                var today = new Date();
+                var month = today.getMonth() +1;
+                img_src += num;
+
+                if(num == 9){
+                    if(month == 12 || month == 1 || month == 2){
+                        img_src += '-win'
+                    } 
+                    else if(month == 6 || month == 7 || month == 8){
+                        img_src += '-sum'
+                    }
+                    else {
+                        img_src += ''
+                    }
+                }
+
+                img_src += '.png';
+                return img_src;
+            }
+
+            function sleep(ms){
+                const wakeUpTime = Date.now() + ms;
+                while (Date.now() < wakeUpTime) {}
+            }
+
+            var timeId = null;
+            var check_flag = 0, new_flag = 1;
+            timeId = setInterval(printStatus(), 1000);
+            
+            function printStatus(){
+                $.ajax({
+                    method: "GET",
+                    url: "https://iotmakers.kt.com:443/api/v1/streams/ckdtjqD1640956149662/log/last",
+                    data: { },
+                    headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEzNjYyMjY0NzksIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMzczNDI2LCJqdGkiOiJiMTg5ZDEzNC1lNDI2LTQwYmEtYmE2Yi0zYTBjMGRkNmY4YjYifQ.ehNv7UavL6nl8j-yXzKzoG8E26gdGWCOXdm3iWDrc6Q6PMUXkgoR1mdGWIR-sK4dl-uDRMW2KWS2F1Xhatsef7MVPJroHk4MpbQA305FFsmE17q9wCJPazS1G1qXf6x1QXJW1JVVQf4wy7Mu_DGHENsUFXtkVSNoOWtRwUQe-QI0fXwyKkCk4IVM7aFByYgkyG43rB8Ej9G67i94I97OJwFKAhcWBPaMX3mAXbF08tX1y5qL5RowfFX18TYkYxpOHQtwMQzOLpM9Ol6dNSiDqPRBJfnhTOKP8_ytslAj6QDyLQs5qkoIqusU6PLKLLcSxRnUElSXorlFQ69pyXziNQ"}
+
+                }).done(function (msg) {
+                    console.log(msg.data[0].attributes)
+                    if(msg.data[0].attributes["start"] === 0){
+                        movepage1();
+                    }
+                    
+                    timeId = setInterval(printStatus(), 1000);
+                });
+            }
             function movepage1(){
                 location.href = "/main"
             }
@@ -117,17 +152,24 @@
             }
         </script>
         <br><br>
-
-
+        <div id="weather" style="font-family: 'Jua', sans-serif; font-size: 20pt;"></div>
+        <script language="javascript">
+            var temp = document.cookie;
+            var split = [];
+            split = temp.split(';');
+            document.getElementById("weather").innerText = "지금 기온은 <"+split[7].substring(5,)+ "> 도입니다."
+        </script>
+        
         <div align="center" style="border: 1px;">  
             <img id="dress" src="">
             <script>document.getElementById('dress').src=dress_info()</script>
         </div>
         
-        <center>
-            <div id="weather" style="width:520px; height:600px; font-family: 'Jua', sans-serif; font-size: 30pt;">오늘의 날씨는 : -1.0도입니다.<br>따뜻한 외투를 챙겨주세요 :)</div>
-
-        </center>
+        <div>
+            <div id="feedback" style="font-family: 'Jua', sans-serif; font-size: 20pt;">오늘의 코디는 만족스러운가요?</div>
+            <button>예</button>
+            <button>아니오</button>
+        </div>
 
     </body>
 </html>

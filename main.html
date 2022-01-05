@@ -2,6 +2,7 @@
 <html lang="ko">
 
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="./img/icon.ico" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,7 @@
         }
 
         var timeId = null;
-        var check_flag = 0;
+        var check_flag = 0, new_flag = 1;
         timeId = setInterval(printStatus(), 1000);
         
         function printStatus(){
@@ -27,36 +28,49 @@
                 method: "GET",
                 url: "https://iotmakers.kt.com:443/api/v1/streams/ckdtjqD1640956149662/log/last",
                 data: { },
-                headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEzNTAzNDc0NjEsIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMzU3NTQ3LCJqdGkiOiI2OTc0NTUyZS0yOTQwLTRjZjAtOWQ4OS05NmI3NWJkMmE4NzgifQ.C0Ymrw71a_DaZ02_0GMs7Q0b-ve9JcC_0tYP9l_sqqRU6v6w05jjjgaQHf_vZpK-K-qAlwHJpr6OPhVql0OWv6bF1wxCZdeH-GFZx8sj5CGTZIeYd0331wbGPuQWfzK7Py95mgNQxc1-hLk2AVrnq3ZuRNpQfxmIIAOu51wApIipSri7J31BhWHnkbEnVLr1fKVmPdp0RaSXkOSHsqxE2bhNCNNB6YuZ37lUT3455bf6yAQtYgjeExLq-tS64ZisTuwF6Lsl_k66E_FZGIjaFT2EUqfqegwuYFABZKiskHWfFknBB6IQyH0M4et0rma7N3VwdcIA5k8cBdi7fqv-1Q"}
+                headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEzNjYyMjY0NzksIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMzczNDI2LCJqdGkiOiJiMTg5ZDEzNC1lNDI2LTQwYmEtYmE2Yi0zYTBjMGRkNmY4YjYifQ.ehNv7UavL6nl8j-yXzKzoG8E26gdGWCOXdm3iWDrc6Q6PMUXkgoR1mdGWIR-sK4dl-uDRMW2KWS2F1Xhatsef7MVPJroHk4MpbQA305FFsmE17q9wCJPazS1G1qXf6x1QXJW1JVVQf4wy7Mu_DGHENsUFXtkVSNoOWtRwUQe-QI0fXwyKkCk4IVM7aFByYgkyG43rB8Ej9G67i94I97OJwFKAhcWBPaMX3mAXbF08tX1y5qL5RowfFX18TYkYxpOHQtwMQzOLpM9Ol6dNSiDqPRBJfnhTOKP8_ytslAj6QDyLQs5qkoIqusU6PLKLLcSxRnUElSXorlFQ69pyXziNQ"}
 
             }).done(function (msg) {
                 let state_awake = document.getElementById("alarm_test")
                 state_awake.appendChild(document.createElement("p"))
                 console.log(msg.data[0].attributes) //iotMakters alarm 마지막 로그 가지고 와서 출력함
                 if(msg.data[0].attributes["start"] === 0){
-                    state_awake.childNodes[0].innerHTML = "기가지니 실행";
+                    state_awake.childNodes[0].innerHTML = "ALARM을 생성했습니다.";
                 }
                 else if(msg.data[0].attributes["alarm"] === 1){
                     state_awake.childNodes[0].innerHTML = "ALARM이 울리고 있습니다.";
+                    new_flag = 0;
                 }
                 else if(msg.data[0].attributes["button"] === 1){
                     state_awake.childNodes[0].innerHTML = "버튼이 눌려 SNOOZE 되었습니다.";
                 }
                 else if(msg.data[0].attributes["check"] === 1){
                     state_awake.childNodes[0].innerHTML = "완전히 일어났습니다. 좋은 아침이에요.";
-
                     let pic_awake = document.getElementById("pic");
-                    pic_awake.appendChild(document.createElement("img"));
-                    var img = pic_awake.querySelector("img");
-                    img.src = "./img/capture.jpg";
-                    //check_flag = 1;
-                    clearInterval(timeId);
+                    pic_awake.innerHTML = "";
+
+                    //새로고침
+                    if(new_flag === 0){
+                        location.reload();
+                        new_flag = 1;
+                        pic_awake.appendChild(document.createElement("img"));
+                        var img = pic_awake.querySelector("img");
+                        img.src = "./img/capture.jpg";
+                        clearInterval(timeId);
+                    }
+                    else{
+                        pic_awake.appendChild(document.createElement("img"));
+                        var img = pic_awake.querySelector("img");
+                        img.src = "./img/capture.jpg";
+                    }
                 }
                 else if(msg.data[0].attributes["dress"] === 1){
+                    clearInterval(timeId);
                     check_flag = 1;
                     window.location.href = "/cody";
                 }
                 else if(msg.data[0].attributes["out"] === 1){
+                    clearInterval(timeId);
                     check_flag = 1;
                     window.location.href = "/mask";
                 }
@@ -105,11 +119,12 @@
             background-color : lightcyan;
         } 
         h1{
-            font-family: 'Nanum Myeongjo', serif;
+            font-family: 'Jua', sans-serif;
         }
 
         p{
-            font-size : 20px;
+            font-family: 'Jua', sans-serif;
+            font-size : 30px;
         }
     </style>
 </head>
