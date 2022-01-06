@@ -2,39 +2,60 @@
 <html lang="ko">
 
 <head>
+    <!-- 구글 폰트를 사용하기 위한 링크 -->
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+
+    <!-- 아이콘 사용을 위한 링크 -->
     <link rel="icon" type="image/x-icon" href="./img/icon.ico" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- 탭 제목 -->
     <title>🌞InnaSHOW🌞</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+
+    <!-- iotmakers API 사용을 위한 스크립트 -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
     </script>
  
     <script>
+        //현재로부터 몇 마이크로초만큼 후까지 잠드는 함수
         function sleep(ms){
             const wakeUpTime = Date.now() + ms;
             while (Date.now() < wakeUpTime) {}
         }
 
+        //setInterval을 실행 및 종료시키기 위한 ID 값 생성(변수 설정)
         var timeId = null;
+
+        // check_flag (0 : 계속해서 iotmakers API에서 마지막 태그스트림 로그를 가져옴, 1: 멈춤)
+        // new_flag (1 : 새로고침 하지 않아도 되는 상태, 0: 기지개를 새로 펴서 사진을 다시 가져와야 하는 상태)
         var check_flag = 0, new_flag = 1;
+
+        //setInterval을 사용하여 printStatus() 함수를 1초마다 계속 호출한다.
         timeId = setInterval(printStatus(), 1000);
         
+        // iotmakers API를 활용해서 마지막 태그스트림 로그를 웹 console에 출력하는 함수.
         function printStatus(){
             $.ajax({
+                //API 호출 방식 : GET
                 method: "GET",
+                //태그스트림(마지막 로그)를 불러오는 API url.
                 url: "https://iotmakers.kt.com:443/api/v1/streams/ckdtjqD1640956149662/log/last",
                 data: { },
-
-                headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEzODgwODM5OTQsIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMzk1MjgzLCJqdGkiOiJmZmUzNWRjZC1iNGNkLTQxZDMtODhmYi00NTA3YjcwNmI4ZTUifQ.Ygq8DPqc3Gcoq-t3bfCDJGCi_Xsc__3hNNtNIA4vtvSa1aEUr2v-XAGo5y8T0gtPUiRPiCKdCQ_6AkPSQipwxB8TymtEh11gb9XWSaOIyoTM1ZQpXlxsIh95UaDfRY94IB30gxcwysMWO8N-_Sz0kUZYp2hfzw9GesJjdW6uWsms222g5WISWg6rAcu3NDTSwfC2TtrKzmjumE0khAz7VBbj1BzIB1D6TTV7gTcDQLYq_Mt70CuyJeSanyFDQPV0ynW5ib0Y2_YslfcU1rCPd2GcciRl_TzktvFlDgDUK-E9KIicJN-zkyDnd6BmoLlhWrKN6FXIvGnd4t2LzjiDHA"}
+                // iotmakers API 활용을 위해 필요한 키 값.
+                headers : {Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdmNfdGd0X3NlcSI6IjEwMDAwMTEyNjYiLCJ1c2VyX25hbWUiOiJja2R0anEyMDIwIiwicHViX3RpbWUiOjE2NDEzNzkwMTY0NDgsIm1icl9pZCI6ImNrZHRqcTIwMjAiLCJtYnJfc2VxIjoiMTAwMDAxMTEyNyIsIm1icl9jbGFzIjoiMDAwMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfT1BFTkFQSSIsIlJPTEVfVVNFUiJdLCJwbGF0Zm9ybSI6IjNNUCIsInRoZW1lX2NkIjoiUFRMIiwiY2xpZW50X2lkIjoiTWpaaVpXTXhPR05pTmpnME5HVTJaV0psWXpZeFltVmhOVFpsT1dJeFpERXhORE15TWpBMk9UZzRPVFUwIiwiYXVkIjpbIklPVC1BUEkiXSwidW5pdF9zdmNfY2QiOiIwMDEiLCJzY29wZSI6WyJ0cnVzdCJdLCJkc3RyX2NkIjoiMDAxIiwiY29tcGFueSI6Ikt0IiwibWJyX25tIjoi7Jyk7LC97IStIiwiZXhwIjoxNjQxMzg2MjE2LCJqdGkiOiJlMmYzZTVmMi1iMjg1LTQwOGMtYTRiNS05ZTY2NWE5MDg5OTkifQ.nOxA1Q6tToGZhOxRRgP5-mqIf3Fx55U5PJ4pNNI_UTYwClVxNfmledX1MM3izpMA0t_EjcdMpbptQ3km2uAx9QTZg39hAxwPVU4kzJcQizVNPmY7hR4fqdIkilRyHmH_lh6V4wVp6UncZJQ1XwpdmwdZhz2QbYt4RYvWvns1iu9lMa_fT41mJczxudeVbUFMbW7CR6KIA2pz1-Vbv88XvK-G1d8iMLIuewSWD_wI5Ea-0K1DjB8MBGTFheROHu4I43CWyyzCKJP0XzoUQoS6QKYUwn2O6n6v190se86NX0e0MLbx251rjdjPddrbsuXg9Ld_kPslD67TUgiJq2ADow"}
 
             }).done(function (msg) {
+                // 기가지니(인나쇼)의 현재상태를 웹에 출력해주기 위한 태그 불러옴.
                 let state_awake = document.getElementById("alarm_test")
+                //해당 태그 하위에 p 태그 생성
                 state_awake.appendChild(document.createElement("p"))
                 console.log(msg.data[0].attributes) //iotMakters alarm 마지막 로그 가지고 와서 출력함
+
+                //가져온 마지막 로그에 따라서 다르게 동작하는 코드.
                 if(msg.data[0].attributes["start"] === 0){
                     state_awake.childNodes[0].innerHTML = "ALARM을 생성했습니다.";
                 }
@@ -50,7 +71,7 @@
                     let pic_awake = document.getElementById("pic");
                     pic_awake.innerHTML = "";
 
-                    //새로고침
+                    //새로고침 -> 사진이 새롭게 로딩된다.
                     if(new_flag === 0){
                         location.reload();
                         new_flag = 1;
@@ -68,23 +89,20 @@
                 else if(msg.data[0].attributes["dress"] === 1){
                     clearInterval(timeId);
                     check_flag = 1;
-                    window.location.href = "/cody";
+                    window.location.href = "/cody"; // cody 페이지로 이동
                 }
                 else if(msg.data[0].attributes["out"] === 1){
                     clearInterval(timeId);
                     check_flag = 1;
-                    window.location.href = "/mask";
+                    window.location.href = "/mask"; // mask 페이지로 이동
                 }
 
                 if(check_flag == 0){
                     timeId = setInterval(printStatus(), 1000);
                 }
-                
             });
         }
-
     </script>
-
 
     <style>
         ul {
@@ -132,7 +150,10 @@
 
 <body>
     <center>
+        <!-- 인나쇼 로고 -->
         <h1><img src='./img/InnaSHOW_logo.png' alt="인나쇼" width="350" height="60"/></h1>
+
+        <!-- navigation bar -->
         <ul>
             <li><a onclick="movepage1()">
                 <img src='./img/main_logo_off.png' alt="Main" width="180" height="60" 
@@ -152,24 +173,25 @@
         </ul>
         <script type="text/javascript">
             function movepage1(){
-                location.href = "/main"
+                location.href = "/main" // 메인 페이지로 이동
             }
             function movepage2(){
-                location.href = "/cody"
+                location.href = "/cody" // 코디 추천 페이지로 이동
             }
             function movepage3(){
-                location.href = "/mask"
+                location.href = "/mask" // 마지막 점검 페이지로 이동
             }
         </script>
 
         <br><br>
 
+        <!-- 기가지니 상태가 출력되는 위치 -->
         <div id ="alarm_test"></div>
 
+        <!-- 사진이 출력되는 위치 -->
         <div id="pic"></div>
 
     </center>
 
 </body>
-
 </html>
