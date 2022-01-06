@@ -19,7 +19,9 @@ sys.path.append("../../motion/")
 import main_openpose as mo
 import subprocess
 
+# 볼륨
 VOLUME = 70
+
 KWSID = ['기가지니', '지니야', '친구야', '자기야']
 RATE = 16000
 CHUNK = 512
@@ -48,13 +50,13 @@ asound.snd_lib_error_set_handler(c_error_handler)
 
 
 def detect():
+	# stream generator를 이용한 기가지니 단어 인식
 	response = vlc.MediaPlayer("response.mp3")
 	response.audio_set_volume(VOLUME)
 	with MS.MicrophoneStream(RATE, CHUNK) as stream:
 		audio_generator = stream.generator()
-
+	
 		for content in audio_generator:
-
 			rc = ktkws.detect(content)
 			rms = audioop.rms(content,2)
 			#print('audio rms = %d' % (rms))
@@ -65,11 +67,13 @@ def detect():
 				return 200
 
 def Alarm(alarm, que):
+	# alarm 울리는 메서드와 동시에 기지개 동작 감지하는 inference 함수 실행
 	global wake_up
 
 	print("played alarm")
 	alarm.play()
 
+	# alarm flag 전송
 	alarm_cnt = 0
 	while True:
 		alarm_cnt += 1
@@ -77,12 +81,14 @@ def Alarm(alarm, que):
 		if 'fail' not in data.decode()  : break
 		if alarm_cnt > 10 : break
 	
+	# inference 함수 실행
 	if mo.inference(que):
 		alarm.stop()
 		return
 
 
 def btn_detect(standard_time, second, que):
+	# 
 	global btn_status
 
 	alarm = vlc.MediaPlayer("long_alarm.mp3")
@@ -97,10 +103,8 @@ def btn_detect(standard_time, second, que):
 
 		for content in audio_generator:
 			now = time.time()
-			# print(type(now))
-			# print(type(standard_time))
-			print(second)
-			# 알람이 울릴 때
+
+			# 알람이 울릴 때 alarm 쓰레드 실행
 			if ((now - standard_time) > second) and (standard_time > 0) and trigger: 
 				alarm_thread.start()
 				trigger = False
@@ -111,14 +115,19 @@ def btn_detect(standard_time, second, que):
 			rms = audioop.rms(content,2)
 			#print('audio rms = %d' % (rms))
 			GPIO.output(31, GPIO.LOW)
+
 			if (btn_status == True):
 				rc = 2
 				btn_status = False			
+			
+			# 기가지니 불리면 응답후 200 반환
 			if (rc == 1):
 				GPIO.output(31, GPIO.HIGH)
 				response.play()
 				#MS.play_file("../data/sample_sound.wav")
 				return 200, alarm
+				
+			# 버튼 눌리면 100 반환
 			elif (rc == 2):
 				return 100, alarm
 

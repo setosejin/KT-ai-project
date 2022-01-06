@@ -5,20 +5,22 @@ import datetime
 import pickle
 import numpy as np
 import sys
+import numpy
 
 if len(sys.argv) > 1:
   output = sys.argv[1]
 else:
   output = "no argument found"
 
-
-#아래 url은 받은 api 페이지 참고문서에 보면 적혀있습니다.
+# 기상청 공공 데이터 API URL
+# 아래 url은 받은 api 페이지 참고문서에 보면 적혀있습니다.
 weather_URL = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'
 service_key = 'C3f1VJ8VEgQNFvd+fBrLMuqEf3hboln4Y+EEFwqvAV84D0HF+xj3cZjSYxkYMMt/ITx+ELxAgIq9S9/lfOoEoQ=='
 today = datetime.datetime.today()
 base_date = today.strftime("%Y%m%d")
-base_time = "0800"
+base_time = "0800" # 시간 기준
 
+# 위도, 경도
 nx = "63"
 ny = "122"
 
@@ -35,7 +37,6 @@ data['data'] = base_date
 weather_data = dict()
 
 for item in items['item']:
-    # 기온
       if item['category'] == 'TMP':
           weather_data['tmp'] = item['fcstValue']  
 
@@ -45,6 +46,7 @@ wsd_data = list()
 reh_data = list()
 pop_data = list()
 
+# 기온, 풍속, 습도, 강수확률 받아오기
 for i in range(len(items['item'])):
   if items['item'][i]['fcstDate'] == base_date:
     if items['item'][i]['category'] == 'TMP':
@@ -59,10 +61,7 @@ for i in range(len(items['item'])):
     if items['item'][i]['category'] == 'POP':
       pop = float(items['item'][i]['fcstValue'])
       pop_data.append(pop)
- 
-#items['item']
 
-import numpy
 
 max_TMP =max(tmp_data)
 min_TMP = min(tmp_data)
@@ -74,7 +73,7 @@ this_tmp = tmp_data[0]
 #저장된 학습모델 불러오기
 with open("./cloth_AI/saved_model.pkl", 'rb') as f:
     model = pickle.load(f)
-
+    
 
 #받아온 변수 값들을 불러온 학습 모델에 넣은 후 예측값 구하기
 arr= np.array([[max_TMP, min_TMP , range_TMP, max_WSD, range_REH]])
