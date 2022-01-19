@@ -1,4 +1,5 @@
-# KT-ai-project
+# KT-ai-project(10조 1어나세0)
+## 인나쇼(innaShow)
 * 10조 프로젝트 git 페이지입니다.
 * 프로젝트 실행시키는 방법
 <br>
